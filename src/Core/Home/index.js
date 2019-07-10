@@ -146,6 +146,7 @@ class Home extends Component {
                                 </View>
                                 <FlatList
                                     data={item}
+                                    showsHorizontalScrollIndicator={false}
                                     horizontal
                                     extraData={this.state}
                                     keyExtractor={this._keyExtractor}
