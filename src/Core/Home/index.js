@@ -31,29 +31,48 @@ const Data = [
     ],
     [
         {
+            id: 1,
             image: require('../../assets/Images/hand.png')
-        }
+        },
+        {
+            id: 2,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 3,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 4,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 5,
+            image: require('../../assets/Images/hand.png')
+        },
     ],
-    [{
-        image: require('../../assets/Images/hand.png')
-    }],
-    [{
-        image: require('../../assets/Images/hand.png')
-    }]
-    ,
-    [{
-        image: require('../../assets/Images/hand.png')
-    }]
-    ,
-    [{
-        image: require('../../assets/Images/hand.png')
-    }]
-    ,
-    [{
-        image: require('../../assets/Images/hand.png')
-    }]
-
-
+    [
+        {
+            id: 1,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 2,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 3,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 4,
+            image: require('../../assets/Images/hand.png')
+        },
+        {
+            id: 5,
+            image: require('../../assets/Images/hand.png')
+        },
+    ],
 
 ]
 class Home extends Component {
@@ -64,16 +83,31 @@ class Home extends Component {
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
-        <Shadow style={{}}>
-            <Image
+            /* <Image
                 source={item.image}
                 style={{
                     width: 100,
                     height: 100,
                     marginHorizontal: 20
                 }}
-            />
-        </Shadow>
+            /> */
+
+            <View style={{ margin: 20 }}>
+
+                <View style={{
+                    shadowColor: "#000",
+                   
+                    shadowOpacity: 0.1,
+                    shadowRadius: 13.97,
+
+                    elevation: 2,
+                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text style={{fontSize: 18}}> Product Name</Text>
+                </View>
+            </View>
+
 
     );
 
