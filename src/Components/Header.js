@@ -4,10 +4,13 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 //import { IMAGES } from '../common'
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Button } from './Button';
+
 
 class Header extends Component {
     constructor(props) {
         super(props);
+        
     }
     render() {
         const { TextStyle, ViewStyle, containerStyle } = styles;
@@ -15,8 +18,7 @@ class Header extends Component {
 
         return (
             <View style={containerStyle}>
-                
-
+               
                 <View style={{ flex: 1,alignItems:'flex-start' ,marginBottom:15 , paddingHorizontal:20  }}>
 
 
@@ -25,11 +27,10 @@ class Header extends Component {
                         size={25}
 
                         color={'gray'} />
-
+         
                         
                 </View>
-
-
+           
                 <View style={{ flex: 1,alignItems:'flex-end' ,marginBottom:15 , paddingRight:20  }}>
 
 

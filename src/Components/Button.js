@@ -8,6 +8,7 @@ import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react
 class Button extends Component {
     constructor(props) {
         super(props);
+      
     }
 
     render() {

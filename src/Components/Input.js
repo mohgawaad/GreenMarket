@@ -8,7 +8,6 @@ import { Platform, StyleSheet, Text, View, Image, TouchableOpacity, TextInput } 
 class Input extends Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {

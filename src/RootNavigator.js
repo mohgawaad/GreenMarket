@@ -13,6 +13,7 @@ import { SignUp } from './Main/SignUp'
 import { Reset } from './Main/Reset'
 //import { Shadow } from './Components/Shadow'
 import { Home } from './Core/Home';
+import { Display } from './Core/Display';
 
 
 const GreenBottomTab = createBottomTabNavigator({
@@ -75,6 +76,12 @@ const GreenHome = createStackNavigator(
         },
         Home: {
             screen: Home,
+            navigationOptions: {
+                header: null 
+            }
+        },
+        Display: {
+            screen: Display,
             navigationOptions: {
                 header: null 
             }
