@@ -92,7 +92,7 @@ class Home extends Component {
                 }}
             /> */
 
-            <View style={{ margin: 20 }}>
+            <View style={{ margin: 20  }}>
 
                 <View style={{
                     shadowColor: "#000",
@@ -135,7 +135,7 @@ class Home extends Component {
                         </View>
                     </Swiper>
                 </View>
-                <ScrollView>
+                <ScrollView style={{marginBottom: 20}}>
                     {
 
                         Data.map(item => (
