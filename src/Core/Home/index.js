@@ -4,11 +4,14 @@ import { Header } from '../../Components/Header';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
 import { Images } from '../../assets/Images';
+import Swiper from 'react-native-swiper';
 
-import Swiper from 'react-native-swiper'
+const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const Data = [
     [
         {
+            title: 'Categores'
+        }, {
             id: 1,
             image: require('../../assets/Images/hand.png')
         },
@@ -31,6 +34,8 @@ const Data = [
     ],
     [
         {
+            title: 'Offers'
+        }, {
             id: 1,
             image: require('../../assets/Images/hand.png')
         },
@@ -53,6 +58,8 @@ const Data = [
     ],
     [
         {
+            title: 'Best Selling'
+        }, {
             id: 1,
             image: require('../../assets/Images/hand.png')
         },
@@ -83,30 +90,34 @@ class Home extends Component {
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
-            /* <Image
-                source={item.image}
-                style={{
-                    width: 100,
-                    height: 100,
-                    marginHorizontal: 20
-                }}
-            /> */
+        /* <Image
+            source={item.image}
+            style={{
+                width: 100,
+                height: 100,
+                marginHorizontal: 20
+            }}
+        /> */
 
-            <View style={{ margin: 20  }}>
-
-                <View style={{
-                    shadowColor: "#000",
-                   
-                    shadowOpacity: 0.1,
-                    shadowRadius: 13.97,
-
-                    elevation: 2,
-                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <Text style={{fontSize: 18}}> Product Name</Text>
-                </View>
+        <View style={{ margin: 20 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                <Text style={{ fontSize: 18 }}> {item.title} </Text>
+                {/* <Text>see all</Text> */}
             </View>
+
+            <View style={{
+                shadowColor: "#000",
+
+                shadowOpacity: 0.1,
+                shadowRadius: 13.97,
+
+                elevation: 2,
+                width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Text style={{ fontSize: 18 }}> Product Name </Text>
+            </View>
+        </View>
 
 
     );
@@ -135,15 +146,33 @@ class Home extends Component {
                         </View>
                     </Swiper>
                 </View>
-                <ScrollView style={{marginBottom: 20}}>
+                <ScrollView style={{ marginBottom: 20 }}>
+
+                    {/* {
+
+                        TitleData.map(item => (
+                            console.log("test ", item),
+                            <View key={item}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                                    <Text>{item.title}</Text>
+                                    <Text>see all</Text>
+                                </View>
+
+                            </View>
+                        )
+                        )
+                    } */}
+
                     {
 
                         Data.map(item => (
-                            <View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                            console.log("test ", item),
+                            <View key={item}>
+                                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
                                     <Text>hello</Text>
                                     <Text>see all</Text>
-                                </View>
+                                </View> */}
+
                                 <FlatList
                                     data={item}
                                     showsHorizontalScrollIndicator={false}

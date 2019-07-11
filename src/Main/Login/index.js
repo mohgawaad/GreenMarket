@@ -5,7 +5,7 @@ import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, S
 //import { Images } from '../../assets/Images'
 import { Button } from '../../Components/Button';
 import { Input } from '../../Components/Input';
-//import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 
 import { Styles } from './style'
 //import { Home } from '../../Core/Home';
@@ -29,7 +29,7 @@ class Login extends Component {
 
 
         return (
-            <ScrollView>
+            <SafeAreaView style={{flex: 1}}>
                 <View style={Styles.containerStyle}>
                     <View style={Styles.backStyle}>
                         <Text
@@ -104,7 +104,7 @@ class Login extends Component {
                         </View>
                      
                 </View>
-            </ScrollView>
+            </SafeAreaView>
 
         );
     }

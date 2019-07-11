@@ -6,7 +6,7 @@ import { Platform, StyleSheet, Text, View, TextInput, StatusBar, Image, ScrollVi
 import { Button } from '../../Components/Button';
 import { Input } from '../../Components/Input';
 
-//import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 
 import { Styles } from './style'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -21,7 +21,7 @@ class SignUp extends Component {
 
         return (
 
-            <ScrollView>
+            <SafeAreaView style={{flex: 1}}>
             
                 <View style={Styles.containerStyle}>
                     <View style={Styles.backStyle}>
@@ -86,7 +86,7 @@ class SignUp extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </ScrollView>
+            </SafeAreaView>
 
         );
     }
