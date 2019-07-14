@@ -14,6 +14,9 @@ import { Reset } from './Main/Reset'
 //import { Shadow } from './Components/Shadow'
 import { Home } from './Core/Home';
 import { Display } from './Core/Display';
+import { Kind } from './Core/Kind';
+import { Prices } from './Core/Prices';
+import { FinalCart } from './Core/FinalCart';
 
 
 const GreenBottomTab = createBottomTabNavigator({
@@ -86,6 +89,25 @@ const GreenHome = createStackNavigator(
                 header: null 
             }
         },
+        Kind: {
+            screen: Kind,
+            navigationOptions: {
+                header: null 
+            }
+        },
+        Prices: {
+            screen: Prices,
+            navigationOptions: {
+                header: null 
+            }
+        },
+        FinalCart: {
+            screen: FinalCart,
+            navigationOptions: {
+                header: null 
+            }
+        },
+        
         
 
     }

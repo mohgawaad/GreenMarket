@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { Header } from '../../Components/Header';
+import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
-//import { Images } from '../../assets/Images';
+import { Images } from '../../assets/Images';
+import { SafeAreaView } from 'react-navigation';
 import Swiper from 'react-native-swiper';
-//import { Categories } from '../Categories';
 
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const Data = [
@@ -68,25 +68,16 @@ const Data = [
             id: 2,
             image: require('../../assets/Images/hand.png')
         },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
+
     ],
 
 ]
-class Home extends Component {
+class Kind extends Component {
 
     constructor(props) {
         super(props);
+        //this.props.navigation.navigate('Intro')
+
     }
     _keyExtractor = (item, index) => item.id;
 
@@ -103,25 +94,19 @@ class Home extends Component {
         <View style={{ margin: 20 }}>
 
 
-            <TouchableOpacity
-                style={{
-                    //backgroundColor:'red',
-                    shadowColor: "#000",
+            <TouchableOpacity style={{
+                shadowColor: "#000",
 
-                    shadowOpacity: 0.1,
-                    shadowRadius: 13.97,
+                shadowOpacity: 0.1,
+                shadowRadius: 13.97,
 
-                    elevation: 2,
-                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-                onPress={() => {this.props.navigation.navigate('Kind')}}
-
+                elevation: 2,
+                width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
+                alignItems: 'center'
+            }}
+            onPress={()=>{this.props.navigation.navigate('Prices')}}
             >
-
-                <Text
-                    
-                    style={{ fontSize: 18 }}> Product Name </Text>
+                <Text style={{ fontSize: 18 }}> KIND </Text>
             </TouchableOpacity>
         </View>
 
@@ -130,41 +115,32 @@ class Home extends Component {
 
 
     render() {
-        /* const renderContent = (testt) => {
-            return (
-                <Text> Hello {testt}</Text>
-
-            )
-        } */
 
         return (
 
-            <View style={{ flex: 1, }}>
-                <Header />
+            <SafeAreaView style={{ flex: 1 }}>
+                <HeaderSub
+                    clicked={() => { this.props.navigation.goBack() }} />
                 <Shadow>
-                    <TouchableOpacity onPress={() => alert('search')}>
+                    <TouchableOpacity onPress={() => { alert('search') }}>
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
                 <View style={{ height: '30%' }}>
-                    <Swiper style={styles.wrapper} showsButtons>
-                        <View style={styles.slide1}>
-                            <Text style={styles.text}>Hello Swiper</Text>
-                        </View>
-                        <View style={styles.slide2}>
-                            <Text style={styles.text}>Beautiful</Text>
-                        </View>
-                        <View style={styles.slide3}>
-                            <Text style={styles.text}>And simple</Text>
-                        </View>
-                    </Swiper>
-                </View>
+                        <Swiper style={styles.wrapper} showsButtons>
+                            <View style={styles.slide1}>
+                                <Text style={styles.text}>Hello Swiper</Text>
+                            </View>
+                            <View style={styles.slide2}>
+                                <Text style={styles.text}>Beautiful</Text>
+                            </View>
+                            <View style={styles.slide3}>
+                                <Text style={styles.text}>And simple</Text>
+                            </View>
+                        </Swiper>
+                    </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    {/*  {renderContent('test')}
-                    {renderContent('test2')}
-                    {renderContent()}
-                    {renderContent()} */}
-
+                    <Text style={{ fontSize: 18,paddingTop:30,marginHorizontal:20 }}>Drinks</Text>
                     {/* {
                         TitleData.map(item => (
                             console.log("test ", item),
@@ -183,12 +159,12 @@ class Home extends Component {
                         Data.map(item => (
                             console.log("test ", item),
                             <View key={item}>
+                                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                                    <Text>hello</Text>
+                                    <Text>see all</Text>
+                                </View> */}
 
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text style={{ fontSize: 18 }}> {item[0].title} </Text>
-                                    <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
-                                </View>
-
+                               
                                 <FlatList
                                     data={item}
                                     showsHorizontalScrollIndicator={false}
@@ -196,9 +172,8 @@ class Home extends Component {
                                     extraData={this.state}
                                     keyExtractor={this._keyExtractor}
                                     renderItem={this._renderItem}
-                                    //ListHeaderComponent={<Text>{item.id}</Text>}
+                                    // ListHeaderComponent={<Text>{item.title}</Text>}
                                     style={{ paddingTop: 0 }}
-                                //onPress={() => this.props.navigation.navigate('Kind')}
                                 />
                             </View>
                         )
@@ -206,7 +181,7 @@ class Home extends Component {
                     }
                 </ScrollView>
 
-            </View>
+            </SafeAreaView>
 
         );
     }
@@ -214,7 +189,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: 'gray',
-        height: '40%'
+       // height: '40%'
     },
     slide1: {
         flex: 1,
@@ -240,4 +215,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
-export { Home }
+export { Kind }

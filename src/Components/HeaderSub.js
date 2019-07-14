@@ -22,7 +22,7 @@ class HeaderSub extends Component {
   //   const {navigate } =  this.props.navigation
 
         return (
-
+        
             <View style={RightIconsStyle}>
 
                 
@@ -35,13 +35,13 @@ class HeaderSub extends Component {
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
                     <Icon
                         style={{ paddingHorizontal: 10 }}
-                        name="bars"
+                        name={this.props.IconName1}
                         size={25}
 
                         color={'gray'} />
 
                     <Icon
-                        name="bell"
+                        name={this.props.IconName2}
                         size={25}
 
                         color={'gray'} />
