@@ -178,7 +178,7 @@ class Login extends Component {
 
                                 placeholderTextColor='white'
                                 placeholder='Phone'
-
+                                Inputstyle={{borderBottomWidth:0.5,borderWidth:0}}
                             //onChangeText={this.onPhoneChange.bind(this)}
                             //value={this.props.phone}
                             />
@@ -193,6 +193,7 @@ class Login extends Component {
                                 secureTextEntry
                                 secure={true}
                                 placeholder='Password'
+                                Inputstyle={{borderBottomWidth:0.5,borderWidth:0}}
                             //onChangeText={this.onPasswordChange.bind(this)}
                             //value={this.props.password}
                             />

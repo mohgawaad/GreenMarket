@@ -18,7 +18,7 @@ class Input extends Component {
                 <TextInput
                 
                     secureTextEntry={this.props.secure}
-                    style={[inputStyle,this.props.style]}
+                    style={[inputStyle,this.props.Inputstyle]}
                     onChangeText={this.props.onChangeText}
                     value={this.props.value}
                     autoCorrect={false}
