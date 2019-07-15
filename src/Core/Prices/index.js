@@ -69,7 +69,7 @@ class Prices extends Component {
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
-        <Card style={{ marginHorizontal: 5, marginBottom: 10, backgroundColor: 'rgba(252,230,177,1)', width: deviceWidth * 0.4, height: deviceHeight * 0.1 }}>
+        <Card style={Styles.cardStyle}>
             <Text> {item.brand}</Text>
         </Card>
     )
@@ -80,17 +80,7 @@ class Prices extends Component {
 
 
             <TouchableOpacity
-                style={{
-                    //backgroundColor:'red',
-                    shadowColor: "#000",
-
-                    shadowOpacity: 0.1,
-                    shadowRadius: 13.97,
-
-                    elevation: 2,
-                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                    alignItems: 'center'
-                }}
+                style={Styles.shadowStyle}
                 onPress={() => { this.props.navigation.navigate('Kind') }}
 
             >

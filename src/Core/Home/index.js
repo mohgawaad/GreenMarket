@@ -6,7 +6,7 @@ import { Search } from '../../Components/Search';
 //import { Images } from '../../assets/Images';
 import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
-
+import { Styles } from './Styles'
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const Data = [
     [
@@ -91,37 +91,20 @@ class Home extends Component {
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
-        /* <Image
-            source={item.image}
-            style={{
-                width: 100,
-                height: 100,
-                marginHorizontal: 20
-            }}
-        /> */
+
 
         <View style={{ margin: 20 }}>
 
 
             <TouchableOpacity
-                style={{
-                    //backgroundColor:'red',
-                    shadowColor: "#000",
-
-                    shadowOpacity: 0.1,
-                    shadowRadius: 13.97,
-
-                    elevation: 2,
-                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-                onPress={() => {this.props.navigation.navigate('Kind')}}
+                style={Styles.shadowStyle}
+                onPress={() => { this.props.navigation.navigate('Kind') }}
 
             >
 
                 <Text
-                    
-                    style={{ fontSize: 18 }}> Product Name </Text>
+                    style={{ fontSize: 18 }}> Product Name
+                </Text>
             </TouchableOpacity>
         </View>
 
@@ -130,12 +113,7 @@ class Home extends Component {
 
 
     render() {
-        /* const renderContent = (testt) => {
-            return (
-                <Text> Hello {testt}</Text>
 
-            )
-        } */
 
         return (
 
@@ -160,23 +138,7 @@ class Home extends Component {
                     </Swiper>
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    {/*  {renderContent('test')}
-                    {renderContent('test2')}
-                    {renderContent()}
-                    {renderContent()} */}
 
-                    {/* {
-                        TitleData.map(item => (
-                            console.log("test ", item),
-                            <View key={item}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text>{item.title}</Text>
-                                    <Text>see all</Text>
-                                </View>
-                            </View>
-                        )
-                        )
-                    } */}
 
                     {
 
@@ -184,7 +146,7 @@ class Home extends Component {
                             console.log("test ", item),
                             <View key={item}>
 
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                                <View style={Styles.headerTitleStyle}>
                                     <Text style={{ fontSize: 18 }}> {item[0].title} </Text>
                                     <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
                                 </View>
