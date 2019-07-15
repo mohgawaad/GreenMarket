@@ -7,21 +7,14 @@ const { deviceHeight, deviceWidth } = deviceDimensions
 export const Styles = StyleSheet.create({
     containerStyle: {
         flex: 1,
-      margin: 20,
-       // marginVertical: 20
+        margin: 20,
     }
     ,
     backStyle: {
-       // flex: 1,
-    //   marginLeft: 20,
-        marginTop: deviceHeight*0.015,
-        
-        height:deviceHeight*0.1
+        marginTop: deviceHeight * 0.015,
+        height: deviceHeight * 0.1
     },
     logInViewStyle: {
-      //  marginLeft: 20,
-       // flex: 1,
-        //paddingTop: 0
         paddingBottom: 20
     },
     logInTextStyle: {
@@ -39,8 +32,7 @@ export const Styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:deviceHeight*0.2,
-       // marginBottom: deviceHeight*0.15,
+        marginTop: deviceHeight * 0.2,
         backgroundColor: '#91DB9C',
         borderRadius: 0,
         borderColor: '#91DB9C',
@@ -50,12 +42,19 @@ export const Styles = StyleSheet.create({
         color: '#D3F0D7',
         textAlign: 'center'
     },
-    ForgittenStyle:{
+    ForgittenStyle: {
         color: '#8BD391',
         fontSize: 15,
         textAlign: 'center',
-        marginVertical:50
+        marginVertical: 50
     }
-
-
+,
+emailContainer:{ 
+    marginTop: 15, 
+    justifyContent: 'flex-start' 
+},
+emailOuterContainer:{ 
+    justifyContent: 'space-between', 
+    flex: 1 
+}
 })

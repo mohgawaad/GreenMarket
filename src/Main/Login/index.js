@@ -28,7 +28,7 @@ class Login extends Component {
 
 
         return (
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <View style={Styles.containerStyle}>
                     <View style={Styles.backStyle}>
                         <Text
@@ -37,23 +37,10 @@ class Login extends Component {
                     </View>
                     <View style={Styles.logInViewStyle}>
                         <Text style={Styles.logInTextStyle}>LOGIN</Text>
-
-                      
                     </View>
-                    <View style={{ justifyContent: 'space-between', flex: 1 }}>
-                        {/* <View style={{ marginTop: 70, justifyContent: 'flex-start' }}>
-                            <Text style={Styles.LabelStyle}>NAME :</Text>
-                            <Input
-                                //style={inputContainer}
-                                keyboardType="phone-pad"
-                                placeholderTextColor='white'
-                                placeholder='Phone'
-                            //onChangeText={this.onPhoneChange.bind(this)}
-                            //value={this.props.phone}
-                            />
-                       
-                        </View> */}
-                        <View style={{ marginTop: 15, justifyContent: 'flex-start' }}>
+                    <View style={Styles.loginOuterStyle}>
+
+                        <View style={Styles.emailBasswodContainer}>
                             <Text style={Styles.LabelStyle}>E_MAIL :</Text>
                             <Input
 
@@ -62,13 +49,13 @@ class Login extends Component {
 
                                 placeholderTextColor='white'
                                 placeholder='Phone'
-                                Inputstyle={{borderBottomWidth:0.5,borderWidth:0}}
+                                Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
                             //onChangeText={this.onPhoneChange.bind(this)}
                             //value={this.props.phone}
                             />
                         </View>
 
-                        <View style={{ marginTop: 15, justifyContent: 'flex-start' }}>
+                        <View style={Styles.emailBasswodContainer}>
                             <Text style={Styles.LabelStyle}>PASSWORD :</Text>
                             <Input
 
@@ -77,7 +64,7 @@ class Login extends Component {
                                 secureTextEntry
                                 secure={true}
                                 placeholder='Password'
-                                Inputstyle={{borderBottomWidth:0.5,borderWidth:0}}
+                                Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
                             //onChangeText={this.onPasswordChange.bind(this)}
                             //value={this.props.password}
                             />
@@ -91,18 +78,18 @@ class Login extends Component {
                             FORGITTEN THE PASSWORD?
                         </Text>
                     </View>
-                   
-                        <View style={{ flex: 1 }}>
-                            <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }}>LOGIN</Button>
-                            <TouchableOpacity onPress={() => this.signUpFun()}>
-                                <Text style={Styles.alreadyHaveStyle}>DONT HAVE AN ACCOUNT?
-                        <Text style={{ color: '#8BD391', fontSize: 19 }}> SIGIN UP</Text>
-                                </Text>
-                            </TouchableOpacity>
-                            <Button style={Styles.signUpStyle}
-                                whenClicked={this.SkibFun} textStyle={Styles.signUpText}>SKIP</Button>
-                        </View>
-                     
+
+                    <View style={{ flex: 1 }}>
+                        <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }}>LOGIN</Button>
+                        <TouchableOpacity onPress={() => this.signUpFun()}>
+                            <Text style={Styles.alreadyHaveStyle}>DONT HAVE AN ACCOUNT?
+                        <Text style={Styles.signUpText}> SIGIN UP</Text>
+                            </Text>
+                        </TouchableOpacity>
+                        <Button style={Styles.signUpStyle}
+                            whenClicked={this.SkibFun} textStyle={Styles.skibText}>SKIP</Button>
+                    </View>
+
                 </View>
             </SafeAreaView>
 

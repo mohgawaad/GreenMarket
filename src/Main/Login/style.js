@@ -67,12 +67,22 @@ export const Styles = StyleSheet.create({
         borderRadius: 0,
         borderColor: 'white'
     },
-    signUpText: {
+    skibText: {
         color: '#91DB9C',
         fontSize: 22,
         fontWeight: '900',
         
-    }
-
-
+    },
+    emailBasswodContainer: {
+        marginTop: 15,
+        justifyContent: 'flex-start'
+    },
+    loginOuterStyle:{ 
+        justifyContent: 'space-between', 
+        flex: 1 
+    },
+    signUpText:{ 
+        color: '#8BD391', 
+        fontSize: 19 
+    },
 })

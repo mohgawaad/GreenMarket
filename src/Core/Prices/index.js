@@ -62,27 +62,10 @@ class Prices extends Component {
 
     constructor(props) {
         super(props);
-        //this.props.navigation.navigate('Intro')
 
     }
 
-    /*
-             <View style={{ margin: 20 }}>
     
-    
-                <TouchableOpacity style={{
-                    shadowColor: "#000",
-    
-                    shadowOpacity: 0.1,
-                    shadowRadius: 13.97,
-    
-                    elevation: 2,
-                    width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                    alignItems: 'center'
-                }}>
-                    <Text style={{ fontSize: 18 }}> KIND </Text>
-                </TouchableOpacity>
-            </View> */
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
@@ -91,14 +74,7 @@ class Prices extends Component {
         </Card>
     )
     _renderItem2 = ({ item }) => (
-        /* <Image
-            source={item.image}
-            style={{
-                width: 100,
-                height: 100,
-                marginHorizontal: 20
-            }}
-        /> */
+       
 
         <View style={{ margin: 20 }}>
 
@@ -140,23 +116,26 @@ class Prices extends Component {
                     clicked={() => { this.props.navigation.goBack() }} />
 
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={{ fontSize: 18, paddingTop: 30, marginHorizontal: 20 }}>Drinks</Text>
-                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
+                    <Text style={Styles.textTitleStyle}>Drinks</Text>
+                    <View style={Styles.PurchasesStyle}>
 
 
                         <View >
-                            <Card style={{ margin: 20, backgroundColor: 'green' }}>
+                            <Card style={Styles.leftPartStyle}>
                                 <Text>Hiiiii</Text>
                             </Card>
                         </View>
-                        <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', margin: 20, }}>
-                            <View style={{}}>
-                                <Text style={{ fontSize: 30 }}>10 LE</Text>
+
+                        <View style={Styles.rightPartStyle}>
+                            <View>
+                                <Text style={Styles.priceTextStyle}>10 LE</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 40, }}>
-                                <View style={{ borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={{ textAlign: 'center', paddingHorizontal: 5 }}>1000</Text>
+
+                            <View style={Styles.countContainerStyle}>
+                                <View style={Styles.boxStyle}>
+                                    <Text style={Styles.countStyle}>1000</Text>
                                 </View>
+
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
                                         onPress={() => { alert('up') }}
@@ -178,6 +157,7 @@ class Prices extends Component {
 
                                 </View>
                             </View>
+                            
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ paddingTop: 20 }}>
                                     <Icon
@@ -188,7 +168,7 @@ class Prices extends Component {
 
 
                                 <Button
-                                    style={Styles.loginStyle}
+                                    style={Styles.buttonStyle}
                                     whenClicked={()=>{this.props.navigation.navigate('FinalCart')}}
                                     textStyle={Styles.loginText}>
                                     ADD TO CART
@@ -196,8 +176,9 @@ class Prices extends Component {
                             </View>
                         </View>
                     </View>
-                    <View style={{ flex: 1, alignItems: "center" }}>
-                        <Text style={{ fontSize: 20, paddingVertical: 20 }}>Brands</Text>
+
+                    <View style={Styles.brandsContainerStyle}>
+                        <Text style={Styles.brandsTextStyle}>Brands</Text>
                         <FlatList
                             data={Brands}
                             // extraData={this.state}
@@ -206,9 +187,9 @@ class Prices extends Component {
                             renderItem={this._renderItem}
                         />
                     </View>
-                    <View>
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
+                    <View>
+                        <View style={Styles.headerSimilarStyle}>
                             <Text style={{ fontSize: 18 }}> {SimilarData[0].title} </Text>
                             <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
                         </View>

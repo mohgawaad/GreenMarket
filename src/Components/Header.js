@@ -73,8 +73,8 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'space-between',
         flexDirection: 'row',
-        height: 100,
-        paddingTop: 50,
+         height: Platform.OS=="android"?60:100,
+        //paddingTop: 50,
         
 
     }

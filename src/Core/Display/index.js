@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Platform,FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
@@ -7,6 +7,7 @@ import { Images } from '../../assets/Images';
 import { SafeAreaView } from 'react-navigation';
 
 import { deviceDimensions } from '../../utils/device-helper'
+import { Styles } from './Styles';
 const { deviceWidth, deviceHeight } = deviceDimensions
 
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
@@ -96,16 +97,7 @@ class Display extends Component {
         <View style={{ margin: 20 }}>
 
 
-            <View style={{
-                shadowColor: "#000",
-
-                shadowOpacity: 0.1,
-                shadowRadius: 13.97,
-
-                elevation: 2,
-                width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                alignItems: 'center'
-            }}>
+            <View style={Styles.shadowStyle}>
                 <Text style={{ fontSize: 18 }}> Product Name </Text>
             </View>
         </View>
@@ -120,39 +112,25 @@ class Display extends Component {
 
             <SafeAreaView style={{ flex: 1, }}>
                 <HeaderSub 
+                IconName1='bars'
+                IconName2='bell'
                 clicked={()=>{this.props.navigation.goBack()}}/>
                 <Shadow>
-                    <TouchableOpacity onPress={() => { alert('search') }}>
+                    <TouchableOpacity onPress={() => { alert('search') }}style={{paddingTop:Platform.OS=="android"?17:0,}}>
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
 
                 <ScrollView style={{ marginBottom: 20 }}>
 
-                    {/* {
-                        TitleData.map(item => (
-                            console.log("test ", item),
-                            <View key={item}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text>{item.title}</Text>
-                                    <Text>see all</Text>
-                                </View>
-                            </View>
-                        )
-                        )
-                    } */}
+                 
 
                     {
 
                         Data.map(item => (
                             console.log("test ", item),
                             <View key={item}>
-                                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text>hello</Text>
-                                    <Text>see all</Text>
-                                </View> */}
-
-                               
+                                 
                                 <FlatList
                                     data={item}
                                     showsHorizontalScrollIndicator={false}
