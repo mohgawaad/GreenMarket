@@ -6,6 +6,9 @@ import { Search } from '../../Components/Search';
 import { Images } from '../../assets/Images';
 import { SafeAreaView } from 'react-navigation';
 
+import { deviceDimensions } from '../../utils/device-helper'
+const { deviceWidth, deviceHeight } = deviceDimensions
+
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const Data = [
     [
