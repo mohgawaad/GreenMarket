@@ -7,20 +7,14 @@ const { deviceHeight, deviceWidth } = deviceDimensions
 export const Styles = StyleSheet.create({
     containerStyle: {
         flex: 1,
-      margin: 20,
-       // marginVertical: 20
+        margin: 20,
     }
     ,
     backStyle: {
-       // flex: 1,
-    //   marginLeft: 20,
-        marginTop: deviceHeight*0.015,
-        
-        height:deviceHeight*0.1
+        marginTop: deviceHeight * 0.015,
+        height: deviceHeight * 0.1
     },
     signUpViewStyle: {
-      //  marginLeft: 20,
-       // flex: 1,
         paddingTop: 30
     },
     signUpTextStyle: {
@@ -38,18 +32,28 @@ export const Styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:deviceHeight*0.13,
-       // marginBottom: deviceHeight*0.15,
+        marginTop: deviceHeight * 0.13,
         backgroundColor: '#91DB9C',
         borderRadius: 0,
         borderColor: '#91DB9C',
     },
     alreadyHaveStyle: {
-        paddingTop:15,
+        paddingTop: 15,
         fontSize: 17,
         color: '#D3F0D7',
         textAlign: 'center'
+    },
+    nameContainer: {
+        marginTop: 70,
+        justifyContent: 'flex-start'
+    },
+    emailBasswodContainer: {
+        marginTop: 15,
+        justifyContent: 'flex-start'
+    },
+    textLogin: {
+        color: '#8BD391',
+        fontSize: 19
     }
-
 
 })

@@ -1,15 +1,12 @@
 
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, StatusBar, Image, ScrollView } from 'react-native';
+import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 //import { Images } from '../../assets/Images'
 import { Button } from '../../Components/Button';
 import { Input } from '../../Components/Input';
-
 import { SafeAreaView } from 'react-navigation';
-
 import { Styles } from './style'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class SignUp extends Component {
 
@@ -34,11 +31,10 @@ class SignUp extends Component {
                             <Text style={Styles.signUpTextStyle}>SIGN UP</Text>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 1 }}>
-                            <View style={{ marginTop: 70, justifyContent: 'flex-start' }}>
+                            <View style={Styles.nameContainer}>
                                 <Text style={Styles.LabelStyle}>NAME :</Text>
                                 <Input
                                     Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
-                                    //style={inputContainer}
                                     keyboardType="phone-pad"
 
                                     placeholderTextColor='white'
@@ -48,7 +44,7 @@ class SignUp extends Component {
                                 />
 
                             </View>
-                            <View style={{ marginTop: 15, justifyContent: 'flex-start' }}>
+                            <View style={Styles.emailBasswodContainer}>
                                 <Text style={Styles.LabelStyle}>E_MAIL :</Text>
                                 <Input
                                     Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
@@ -63,7 +59,7 @@ class SignUp extends Component {
                                 />
                             </View>
 
-                            <View style={{ marginTop: 15, justifyContent: 'flex-start' }}>
+                            <View style={Styles.emailBasswodContainer}>
                                 <Text style={Styles.LabelStyle}>PASSWORD :</Text>
                                 <Input
                                     Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
@@ -81,8 +77,7 @@ class SignUp extends Component {
                             <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }}>SIGN UP</Button>
                             <TouchableOpacity onPress={() => this.logInFun()} >
                                 <Text style={Styles.alreadyHaveStyle}>ALREADY HAVE AN ACCOUNT?
-                        <Text
-                                        style={{ color: '#8BD391', fontSize: 19 }}> Login</Text>
+                                    <Text style={Styles.textLogin}> Login</Text>
                                 </Text>
                             </TouchableOpacity>
                         </View>

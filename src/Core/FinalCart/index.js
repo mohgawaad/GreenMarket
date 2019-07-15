@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,TouchableHighlight } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Card } from '../../Components/Card';
@@ -10,7 +10,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button } from '../../Components/Button';
 import { Styles } from './Styles'
 import { deviceDimensions } from '../../utils/device-helper'
-import { TouchableHighlight } from 'react-native-gesture-handler';
 const { deviceWidth, deviceHeight } = deviceDimensions
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const SimilarData = [

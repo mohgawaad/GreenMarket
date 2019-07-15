@@ -14,25 +14,25 @@ class HeaderSub extends Component {
 
     }
 
-    
+
 
     render() {
         const { RightIconsStyle, backStyle, ContainerStyle } = styles;
 
-  //   const {navigate } =  this.props.navigation
+        //   const {navigate } =  this.props.navigation
 
         return (
-        
+
             <View style={RightIconsStyle}>
 
-                
+
                 <View style={backStyle}>
                     <Text
                         onPress={this.props.clicked}
                         style={{ fontSize: 30 }}>&larr;</Text>
                 </View>
 
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginTop: Platform.OS=="android"?15:0 }}>
                     <Icon
                         style={{ paddingHorizontal: 10 }}
                         name={this.props.IconName1}
@@ -43,9 +43,8 @@ class HeaderSub extends Component {
                     <Icon
                         name={this.props.IconName2}
                         size={25}
-
                         color={'gray'} />
-                </View> 
+                </View>
 
 
             </View>
@@ -58,16 +57,7 @@ class HeaderSub extends Component {
 }
 const styles = StyleSheet.create({
     ViewStyle: {
-        /* backgroundColor: '#F8F8F8',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 60,
-        paddingTop: 15,
-        shadowColor: '#F8F8F8',
-        shadowOffset: { width: 0, height: 20 },
-        shadowOpacity: 0.2,
-        elevation: 2,
-        postion: 'relative', */
+        
     },
     TextStyle: {
         fontSize: 20,

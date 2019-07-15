@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Platform,FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
@@ -120,9 +120,11 @@ class Kind extends Component {
 
             <SafeAreaView style={{ flex: 1 }}>
                 <HeaderSub
+                IconName1='bars'
+                IconName2='bell'
                     clicked={() => { this.props.navigation.goBack() }} />
                 <Shadow>
-                    <TouchableOpacity onPress={() => { alert('search') }}>
+                    <TouchableOpacity onPress={() => { alert('search') }}style={{paddingTop:Platform.OS=="android"?17:0,}}>
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
