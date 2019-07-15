@@ -35,10 +35,54 @@ export const Styles = StyleSheet.create({
         borderRadius: 0,
         borderColor: 'white'
     },
+<<<<<<< HEAD
 
     titleStyle: {
         fontSize: 18,
         paddingTop: 30,
         marginHorizontal: 20,
     }
+=======
+    ProcurementListStyle:{ 
+        flexDirection: 'row', 
+        flex: 1, 
+        justifyContent: 'center', 
+    },
+nameOfProductStyle:{ 
+    fontSize: 18, 
+    paddingTop: 30, 
+    marginHorizontal: 20 
+},
+cardStyle:{ 
+    margin: 10, 
+    backgroundColor: 'lightyellow' 
+},
+productDetailsStyle:{ 
+    flex: 1, 
+    alignSelf: 'center', 
+    alignItems: 'center', 
+    margin: 10 
+},
+countCountainerStyle:{ 
+    flexDirection: 'row',
+    marginHorizontal: 40, 
+},
+boxCountStyle:{ 
+    borderWidth: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center' 
+},
+textCountStyle:{ 
+    textAlign: 'center', 
+    paddingHorizontal: 5 
+},
+closeCountainer:{ 
+    marginRight: 10, 
+    justifyContent: 'center' 
+},
+confirmationStyle:{ 
+    alignItems: "center", 
+    flexDirection: 'column', 
+},
+>>>>>>> 4ddfb119f2a5900fe1a6e4c0c54804d0781709b3
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, TouchableHighlight } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Card } from '../../Components/Card';
@@ -12,51 +12,7 @@ import { Styles } from './Styles'
 import { deviceDimensions } from '../../utils/device-helper'
 const { deviceWidth, deviceHeight } = deviceDimensions
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
-const SimilarData = [
 
-    {
-        title: 'Similar Items'
-    }, {
-        id: 1,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 2,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 3,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 4,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 5,
-        image: require('../../assets/Images/hand.png')
-    },
-
-
-]
-const Brands = [
-    {
-        brand: "Gohina1"
-    },
-    {
-        brand: "Gohina2"
-    },
-    {
-        brand: "Gohina3"
-    },
-    {
-        brand: "Gohina4"
-    }
-    ,
-    {
-        brand: "Gohina4"
-    }
-]
 
 class FinalCart extends Component {
 
@@ -86,22 +42,23 @@ class FinalCart extends Component {
                     <Image style={{ alignItems: 'stretch' }} source={Images.finalCart} />
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={{ fontSize: 18, paddingTop: 30, marginHorizontal: 20 }}>Drinks</Text>
-                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', }}>
+                    <View style={Styles.ProcurementListStyle}>
 
 
                         <View style={{}}>
-                            <Card style={{ margin: 10, backgroundColor: 'lightyellow' }}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
                                 <Text>Hiiiii</Text>
                             </Card>
                         </View>
-                        <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', margin: 10 }}>
-                            <View style={{}}>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
                                 <Text style={{ fontSize: 30 }}>10 LE</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 40, }}>
-                                <View style={{ borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={{ textAlign: 'center', paddingHorizontal: 5 }}>1000</Text>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
                                 </View>
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
@@ -128,7 +85,7 @@ class FinalCart extends Component {
                             </View>
 
                         </View>
-                        <View style={{ marginRight: 10, justifyContent: 'center' }}>
+                        <View style={Styles.closeCountainer}>
 
                             <TouchableHighlight
                                 onPress={() => { alert('close') }}
@@ -141,22 +98,23 @@ class FinalCart extends Component {
                         </View>
                     </View>
 
-
-                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', }}>
+                    <View style={Styles.ProcurementListStyle}>
 
 
                         <View style={{}}>
-                            <Card style={{ margin: 10, backgroundColor: 'lightyellow' }}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
                                 <Text>Hiiiii</Text>
                             </Card>
                         </View>
-                        <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', margin: 10 }}>
-                            <View style={{}}>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
                                 <Text style={{ fontSize: 30 }}>10 LE</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 40, }}>
-                                <View style={{ borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={{ textAlign: 'center', paddingHorizontal: 5 }}>1000</Text>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
                                 </View>
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
@@ -183,7 +141,7 @@ class FinalCart extends Component {
                             </View>
 
                         </View>
-                        <View style={{ marginRight: 10, justifyContent: 'center' }}>
+                        <View style={Styles.closeCountainer}>
 
                             <TouchableHighlight
                                 onPress={() => { alert('close') }}
@@ -195,21 +153,24 @@ class FinalCart extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', }}>
+
+                    <View style={Styles.ProcurementListStyle}>
 
 
                         <View style={{}}>
-                            <Card style={{ margin: 10, backgroundColor: 'lightyellow' }}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
                                 <Text>Hiiiii</Text>
                             </Card>
                         </View>
-                        <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', margin: 10 }}>
-                            <View style={{}}>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
                                 <Text style={{ fontSize: 30 }}>10 LE</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 40, }}>
-                                <View style={{ borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={{ textAlign: 'center', paddingHorizontal: 5 }}>1000</Text>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
                                 </View>
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
@@ -236,7 +197,7 @@ class FinalCart extends Component {
                             </View>
 
                         </View>
-                        <View style={{ marginRight: 10, justifyContent: 'center' }}>
+                        <View style={Styles.closeCountainer}>
 
                             <TouchableHighlight
                                 onPress={() => { alert('close') }}
@@ -248,21 +209,24 @@ class FinalCart extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', }}>
+
+                    <View style={Styles.ProcurementListStyle}>
 
 
                         <View style={{}}>
-                            <Card style={{ margin: 10, backgroundColor: 'lightyellow' }}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
                                 <Text>Hiiiii</Text>
                             </Card>
                         </View>
-                        <View style={{ flex: 1, alignSelf: 'center', alignItems: 'center', margin: 10 }}>
-                            <View style={{}}>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
                                 <Text style={{ fontSize: 30 }}>10 LE</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 40, }}>
-                                <View style={{ borderWidth: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Text style={{ textAlign: 'center', paddingHorizontal: 5 }}>1000</Text>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
                                 </View>
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
@@ -289,7 +253,119 @@ class FinalCart extends Component {
                             </View>
 
                         </View>
-                        <View style={{ marginRight: 10, justifyContent: 'center' }}>
+                        <View style={Styles.closeCountainer}>
+
+                            <TouchableHighlight
+                                onPress={() => { alert('close') }}
+                            >
+                                <Icon
+                                    name="window-close"
+                                    size={25}
+                                    color={'gray'} />
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+
+                    <View style={Styles.ProcurementListStyle}>
+
+
+                        <View style={{}}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
+                                <Text>Hiiiii</Text>
+                            </Card>
+                        </View>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
+                                <Text style={{ fontSize: 30 }}>10 LE</Text>
+                            </View>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
+                                </View>
+                                <View style={{ marginHorizontal: 10 }}>
+                                    <TouchableOpacity
+                                        onPress={() => { alert('up') }}
+                                    >
+                                        <Icon
+                                            name="chevron-up"
+                                            size={15}
+                                            color={'gray'} />
+
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        onPress={() => { alert('down') }}>
+                                        <Icon
+                                            name="chevron-down"
+                                            size={15}
+                                            color={'gray'} />
+                                    </TouchableOpacity>
+
+
+                                </View>
+
+                            </View>
+
+                        </View>
+                        <View style={Styles.closeCountainer}>
+
+                            <TouchableHighlight
+                                onPress={() => { alert('close') }}
+                            >
+                                <Icon
+                                    name="window-close"
+                                    size={25}
+                                    color={'gray'} />
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+
+                    <View style={Styles.ProcurementListStyle}>
+
+
+                        <View style={{}}>
+                            <Text style={Styles.nameOfProductStyle}>Drinks</Text>
+
+                            <Card style={Styles.cardStyle}>
+                                <Text>Hiiiii</Text>
+                            </Card>
+                        </View>
+                        <View style={Styles.productDetailsStyle}>
+                            <View>
+                                <Text style={{ fontSize: 30 }}>10 LE</Text>
+                            </View>
+                            <View style={Styles.countCountainerStyle}>
+                                <View style={Styles.boxCountStyle}>
+                                    <Text style={Styles.textCountStyle}>1000</Text>
+                                </View>
+                                <View style={{ marginHorizontal: 10 }}>
+                                    <TouchableOpacity
+                                        onPress={() => { alert('up') }}
+                                    >
+                                        <Icon
+                                            name="chevron-up"
+                                            size={15}
+                                            color={'gray'} />
+
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity
+                                        onPress={() => { alert('down') }}>
+                                        <Icon
+                                            name="chevron-down"
+                                            size={15}
+                                            color={'gray'} />
+                                    </TouchableOpacity>
+
+
+                                </View>
+
+                            </View>
+
+                        </View>
+                        <View style={Styles.closeCountainer}>
 
                             <TouchableHighlight
                                 onPress={() => { alert('close') }}
@@ -304,7 +380,7 @@ class FinalCart extends Component {
 
 
                 </ScrollView>
-                <View style={{ alignItems: "center", flexDirection: 'column', }}>
+                <View style={Styles.confirmationStyle}>
                     <Button
                         style={Styles.loginStyle}
                         whenClicked={this.LoginClickHandler}

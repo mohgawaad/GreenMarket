@@ -69,5 +69,21 @@ export const Styles = StyleSheet.create({
         justifyContent: 'space-between', 
         margin: 20 
     },
+    shadowStyle:{
+        //backgroundColor:'red',
+        shadowColor: "#000",
 
+        shadowOpacity: 0.1,
+        shadowRadius: 13.97,
+
+        elevation: 2,
+        width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
+        alignItems: 'center'
+    },
+    cardStyle:{ marginHorizontal: 5, 
+        marginBottom: 10, 
+        backgroundColor: 'rgba(252,230,177,1)', 
+        width: deviceWidth * 0.4, 
+        height: deviceHeight * 0.1 
+    },
 })
