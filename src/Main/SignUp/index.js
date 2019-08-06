@@ -6,9 +6,53 @@ import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, S
 import { Button } from '../../Components/Button';
 import { Input } from '../../Components/Input';
 import { SafeAreaView } from 'react-navigation';
-import { Styles } from './style'
+import axios from 'axios'
+import { Styles } from './style';
+import validator from 'validator';
+
 
 class SignUp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { name: "", email: "", password: "", confirmPassword: "", valid: false };
+
+    }
+    _SignUp() {
+
+        // alert(this.state.password)
+        const { name, email, password, confirmPassword } = this.state;
+        axios.post('http://192.168.1.23:8000/api/auth/register',
+            {
+                name: name,
+                email: email,
+                password: password,
+                password_confirmation: confirmPassword
+            }).then(res =>{alert(res)})
+            .catch((err)=>alert(err))
+    }
+    
+    _onSubmit() {
+
+        if (validator.isEmail(this.state.email) &&
+            validator.matches(this.state.password, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)
+            && validator.matches(this.state.name, /^[a-zA-Z0-9_-]*$/)
+            && validator.matches(this.state.confirmPassword, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)) {
+            if (this.state.password == this.state.confirmPassword) {
+
+                this._SignUp();
+
+            }
+            else{alert('please entered password coorectely ')}
+
+        }
+
+        else alert('no')
+
+
+        if (this.state.valid) {
+            console.log("this is valid")
+        }
+    }
 
     logInFun = () => {
         this.props.navigation.navigate('Login')
@@ -39,7 +83,7 @@ class SignUp extends Component {
 
                                     placeholderTextColor='white'
                                     placeholder='Phone'
-                                //onChangeText={this.onPhoneChange.bind(this)}
+                                    onChangeText={(text) => this.setState({ name: text })}
                                 //value={this.props.phone}
                                 />
 
@@ -53,8 +97,7 @@ class SignUp extends Component {
 
                                     placeholderTextColor='white'
                                     placeholder='Phone'
-
-                                //onChangeText={this.onPhoneChange.bind(this)}
+                                    onChangeText={(text) => this.setState({ email: text })}
                                 //value={this.props.phone}
                                 />
                             </View>
@@ -68,13 +111,26 @@ class SignUp extends Component {
                                     secureTextEntry
                                     secure={true}
                                     placeholder='Password'
-                                //onChangeText={this.onPasswordChange.bind(this)}
+                                    onChangeText={(text) => this.setState({ password: text })}
+                                //value={this.props.password}
+                                />
+                            </View>
+                            <View style={Styles.emailBasswodContainer}>
+                                <Text style={Styles.LabelStyle}>CONFIRM-PASSWORD :</Text>
+                                <Input
+                                    Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
+                                    //style={inputContainer}
+                                    placeholderTextColor='white'
+                                    secureTextEntry
+                                    secure={true}
+                                    placeholder='Password'
+                                    onChangeText={(text) => this.setState({ confirmPassword: text })}
                                 //value={this.props.password}
                                 />
                             </View>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }}>SIGN UP</Button>
+                            <Button style={Styles.signUpBtnStyle} whenClicked={() => this._onSubmit()} textStyle={{ fontSize: 19, fontWeight: '900', }}>SIGN UP</Button>
                             <TouchableOpacity onPress={() => this.logInFun()} >
                                 <Text style={Styles.alreadyHaveStyle}>ALREADY HAVE AN ACCOUNT?
                                     <Text style={Styles.textLogin}> Login</Text>

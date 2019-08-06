@@ -17,6 +17,7 @@ import { Display } from './Core/Display';
 import { Kind } from './Core/Kind';
 import { Prices } from './Core/Prices';
 import { FinalCart } from './Core/FinalCart';
+import { Goo } from './Core/Goo';
 
 
 const GreenBottomTab = createBottomTabNavigator({
@@ -107,7 +108,12 @@ const GreenHome = createStackNavigator(
                 header: null 
             }
         },
-        
+        Goo: {
+            screen: Goo,
+            navigationOptions: {
+                header: null 
+            }
+        }
         
 
     }

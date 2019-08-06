@@ -7,6 +7,7 @@ import { Search } from '../../Components/Search';
 import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
 import { Styles } from './Styles'
+import axios from 'axios'
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const Data = [
     [
@@ -83,10 +84,19 @@ const Data = [
     ],
 
 ]
+
 class Home extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            DataCategories: [],
+            DataOfferes: [],
+            DataBestSelling: [],
+            dataFlageCat: false,
+            dataFlageOff: false,
+            dataFlageBest: false,
+        }
     }
     _keyExtractor = (item, index) => item.id;
 
@@ -103,7 +113,7 @@ class Home extends Component {
             >
 
                 <Text
-                    style={{ fontSize: 18 }}> Product Name
+                    style={{ fontSize: 18 }}> {item.name}
                 </Text>
             </TouchableOpacity>
         </View>
@@ -111,6 +121,52 @@ class Home extends Component {
 
     );
 
+    componentDidMount() {
+        axios.get('http://market360.herokuapp.com/api')
+            .then(res => {
+                this.setState({
+                    DataCategories: res.data.data.latest_Category,
+                    dataFlageCat: true,
+                    DataOfferes: res.data.data.best_offers,
+                    dataFlageOff: true,
+                    DataBestSelling: res.data.data.Best_Selling,
+                    dataFlageBest: true
+                }
+
+                );  console.log('res ', res.data.data.latest_Category)
+            }
+            )
+            .catch((err) => alert(err))
+
+
+      
+    }
+
+    requestHandler = (item, title) => {
+        return (
+
+            <View key={item}>
+
+                <View style={Styles.headerTitleStyle}>
+                    <Text style={{ fontSize: 18 }}> {title} </Text>
+                    <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
+                </View>
+
+                <FlatList
+                    data={item}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal
+                    extraData={this.state}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={this._renderItem}
+                    //ListHeaderComponent={<Text>{item.id}</Text>}
+                    style={{ paddingTop: 0 }}
+
+                //onPress={() => this.props.navigation.navigate('Kind')}
+                />
+            </View>
+        )
+    }
 
     render() {
 
@@ -139,33 +195,19 @@ class Home extends Component {
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
 
-
+                    {this.state.dataFlage ? this.requestHandler(this.state.DataCategories, 'Categories') : null}
+                    {this.state.dataFlage ? this.requestHandler(this.state.DataOfferes, 'Offers') : null}
+                    {this.state.dataFlage ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : null}
+ 
+                    {/* 
                     {
 
                         Data.map(item => (
                             console.log("test ", item),
-                            <View key={item}>
-
-                                <View style={Styles.headerTitleStyle}>
-                                    <Text style={{ fontSize: 18 }}> {item[0].title} </Text>
-                                    <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
-                                </View>
-
-                                <FlatList
-                                    data={item}
-                                    showsHorizontalScrollIndicator={false}
-                                    horizontal
-                                    extraData={this.state}
-                                    keyExtractor={this._keyExtractor}
-                                    renderItem={this._renderItem}
-                                    //ListHeaderComponent={<Text>{item.id}</Text>}
-                                    style={{ paddingTop: 0 }}
-                                //onPress={() => this.props.navigation.navigate('Kind')}
-                                />
-                            </View>
+                            
                         )
                         )
-                    }
+                    } */}
                 </ScrollView>
 
             </View>

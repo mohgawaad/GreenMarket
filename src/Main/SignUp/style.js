@@ -49,7 +49,8 @@ export const Styles = StyleSheet.create({
     },
     emailBasswodContainer: {
         marginTop: 15,
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        
     },
     textLogin: {
         color: '#8BD391',

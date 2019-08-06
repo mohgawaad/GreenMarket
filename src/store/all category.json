@@ -1,0 +1,58 @@
+{  
+   "data":{  
+      "All_Category":[  
+         {  
+            "id":1,
+            "name":"Amalia Sipes",
+            "description":"Qui dolore et qui et culpa. Possimus quia magnam explicabo laudantium. Laboriosam veritatis deserunt iure.",
+            "photo":"cupiditate",
+            "link":"http:\/\/localhost\/market\/public\/api\/products\/1"
+         },
+         {  
+            "id":2,
+            "name":"Chauncey Donnelly",
+            "description":"Deleniti voluptates quo et. Id provident qui reprehenderit molestiae tenetur et necessitatibus. Tempora omnis placeat impedit et ut animi dolor. Id consectetur et ut molestiae dignissimos.",
+            "photo":"suscipit",
+            "link":"http:\/\/localhost\/market\/public\/api\/products\/2"
+         },
+         {  
+            "id":3,
+            "name":"Alec Goodwin III",
+            "description":"Voluptates natus sint rerum dolores animi. Rerum blanditiis quae ullam consequatur sit aut. Omnis deserunt architecto ea modi praesentium. Voluptatem aut repudiandae vel ea quae voluptatibus.",
+            "photo":"laboriosam",
+            "link":"http:\/\/localhost\/market\/public\/api\/products\/3"
+         },
+         {  
+            "id":4,
+            "name":"Earline Tromp",
+            "description":"Cum deleniti at quis cupiditate et natus. Eos voluptatem ducimus soluta qui. Dolore tenetur quae placeat et. Possimus sed doloremque voluptate qui tempore.",
+            "photo":"ratione",
+            "link":"http:\/\/localhost\/market\/public\/api\/products\/4"
+         },
+         {  
+            "id":5,
+            "name":"Prof. Beau Bailey",
+            "description":"Accusantium aut repudiandae delectus et ut. Quos nihil porro eum. Aperiam reiciendis sunt omnis natus totam. Eius doloremque cumque minus ut quaerat.",
+            "photo":"reprehenderit",
+            "link":"http:\/\/localhost\/market\/public\/api\/products\/5"
+         }
+      ]
+   },
+   "links":{  
+      "first":"http:\/\/localhost\/market\/public\/api\/categories?page=1",
+      "last":"http:\/\/localhost\/market\/public\/api\/categories?page=4",
+      "prev":null,
+      "next":"http:\/\/localhost\/market\/public\/api\/categories?page=2"
+   },
+   "meta":{  
+      "current_page":1,
+      "from":1,
+      "last_page":4,
+      "path":"http:\/\/localhost\/market\/public\/api\/categories",
+      "per_page":5,
+      "to":5,
+      "total":20
+   },
+   "Status":"success",
+   "Error":"No Errors Found"
+}

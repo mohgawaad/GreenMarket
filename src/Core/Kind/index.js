@@ -1,85 +1,56 @@
 import React, { Component } from 'react';
-import { Platform,FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Platform, FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
 import { Images } from '../../assets/Images';
 import { SafeAreaView } from 'react-navigation';
 import Swiper from 'react-native-swiper';
+import { Styles } from './Styles'
+import { store } from '../../store/store'
 
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
-const Data = [
-    [
-        {
-            title: 'Categores'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Offers'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Best Selling'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
 
-    ],
-
-]
 class Kind extends Component {
 
     constructor(props) {
         super(props);
         //this.props.navigation.navigate('Intro')
+        this.state = {
+            Data: [
+
+                {
+                    id: 0,
+                    title: 'Categores'
+                }, {
+                    id: 1,
+                    image: '../../assets/Images/hand.png'
+                },
+                {
+                    id: 2,
+                    image: '../../assets/Images/hand.png'
+                },
+                {
+                    id: 3,
+                    image: '../../assets/Images/hand.png'
+                },
+                {
+                    id: 4,
+                    image: '../../assets/Images/hand.png'
+                },
+                {
+                    id: 5,
+                    image: '../../assets/Images/hand.png'
+                },
+
+
+
+
+            ]
+        }
 
     }
-    _keyExtractor = (item, index) => item.id;
+    _keyExtractor = (item, index) => {/*  alert("extractor "+item.id) ; */return item.id };
 
     _renderItem = ({ item }) => (
         /* <Image
@@ -94,55 +65,55 @@ class Kind extends Component {
         <View style={{ margin: 20 }}>
 
 
-            <TouchableOpacity style={{
-                shadowColor: "#000",
-
-                shadowOpacity: 0.1,
-                shadowRadius: 13.97,
-
-                elevation: 2,
-                width: 150, height: 150, backgroundColor: '#fff', justifyContent: 'center',
-                alignItems: 'center'
-            }}
-            onPress={()=>{this.props.navigation.navigate('Prices')}}
+            <TouchableOpacity style={Styles.shadowStyle}
+                onPress={() => { this.props.navigation.navigate('Prices') }}
+            //onPress={()=> this.handleItemPressed(item.id)}
             >
-                <Text style={{ fontSize: 18 }}> KIND </Text>
+                <Text style={{ fontSize: 18 }}>hello  {item.image} </Text>
             </TouchableOpacity>
         </View>
 
 
     );
 
+    handleItemPressed = (id) => {
+        console.log("id", id)
+        const filterData = this.state.Data.filter(item => item.id !== id)
+        // alert(filterData)
+        console.log(filterData)
+        this.setState({ Data: filterData })
 
+        // Data = filterData;
+    }
     render() {
 
         return (
 
             <SafeAreaView style={{ flex: 1 }}>
                 <HeaderSub
-                IconName1='bars'
-                IconName2='bell'
+                    IconName1='bars'
+                    IconName2='bell'
                     clicked={() => { this.props.navigation.goBack() }} />
                 <Shadow>
-                    <TouchableOpacity onPress={() => { alert('search') }}style={{paddingTop:Platform.OS=="android"?17:0,}}>
+                    <TouchableOpacity onPress={() => { alert('search') }} style={{ paddingTop: Platform.OS == "android" ? 17 : 0, }}>
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
                 <View style={{ height: '30%' }}>
-                        <Swiper style={styles.wrapper} showsButtons>
-                            <View style={styles.slide1}>
-                                <Text style={styles.text}>Hello Swiper</Text>
-                            </View>
-                            <View style={styles.slide2}>
-                                <Text style={styles.text}>Beautiful</Text>
-                            </View>
-                            <View style={styles.slide3}>
-                                <Text style={styles.text}>And simple</Text>
-                            </View>
-                        </Swiper>
-                    </View>
+                    <Swiper style={styles.wrapper} showsButtons>
+                        <View style={styles.slide1}>
+                            <Text style={styles.text}>Hello Swiper</Text>
+                        </View>
+                        <View style={styles.slide2}>
+                            <Text style={styles.text}>Beautiful</Text>
+                        </View>
+                        <View style={styles.slide3}>
+                            <Text style={styles.text}>And simple</Text>
+                        </View>
+                    </Swiper>
+                </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={{ fontSize: 18,paddingTop:30,marginHorizontal:20 }}>Drinks</Text>
+                    <Text style={Styles.titleStyle}>Drinks</Text>
                     {/* {
                         TitleData.map(item => (
                             console.log("test ", item),
@@ -156,31 +127,21 @@ class Kind extends Component {
                         )
                     } */}
 
-                    {
 
-                        Data.map(item => (
-                            console.log("test ", item),
-                            <View key={item}>
-                                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text>hello</Text>
-                                    <Text>see all</Text>
-                                </View> */}
 
-                               
-                                <FlatList
-                                    data={item}
-                                    showsHorizontalScrollIndicator={false}
-                                    horizontal
-                                    extraData={this.state}
-                                    keyExtractor={this._keyExtractor}
-                                    renderItem={this._renderItem}
-                                    // ListHeaderComponent={<Text>{item.title}</Text>}
-                                    style={{ paddingTop: 0 }}
-                                />
-                            </View>
-                        )
-                        )
-                    }
+
+
+                    <FlatList
+                        data={this.state.Data}
+                        showsHorizontalScrollIndicator={false}
+                        numColumns={2}
+                        extraData={this.state}
+                        keyExtractor={this._keyExtractor}
+                        renderItem={this._renderItem}
+                        // ListHeaderComponent={<Text>{item.title}</Text>}
+                        style={{ paddingTop: 0 }}
+                    />
+
                 </ScrollView>
 
             </SafeAreaView>
@@ -191,7 +152,7 @@ class Kind extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: 'gray',
-       // height: '40%'
+        // height: '40%'
     },
     slide1: {
         flex: 1,

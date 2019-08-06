@@ -1,7 +1,7 @@
 
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, ImageBackground, StatusBar } from 'react-native';
+import { Platform, StyleSheet, Text, View, ImageBackground, StatusBar, AsyncStorage } from 'react-native';
 import { Images } from '../../assets/Images'
 //import { SafeAreaView } from 'react-navigation';
 
@@ -12,10 +12,28 @@ class Splash extends Component {
         super(props)
     }
     componentDidMount() {
-        setTimeout(() => {
-            this.props.navigation.navigate("Intro");
+        // setTimeout(() => {}, 2000)
+        this._retrieveData();
 
-        }, 2000)
+
+    }
+    _retrieveData = async () => {
+        console.log('iiin')
+        try {
+            console.log('tryyyyy')
+            const value = await AsyncStorage.getItem('MySuperStore');
+            if (value !== null) {
+                // We have data!!
+                this.props.navigation.navigate("Home")
+                console.log(value);
+                console.log('yeeeees')
+            }
+            else { this.props.navigation.navigate("Intro") }
+        } catch (error) {
+            this.props.navigation.navigate("Intro")
+            console.log('errrrror')
+            // Error retrieving data
+        }
     }
     render() {
         return (

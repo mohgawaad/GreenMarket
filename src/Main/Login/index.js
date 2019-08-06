@@ -1,16 +1,23 @@
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Platform, AsyncStorage, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 //import { Images } from '../../assets/Images'
 import { Button } from '../../Components/Button';
 import { Input } from '../../Components/Input';
 import { SafeAreaView } from 'react-navigation';
 
 import { Styles } from './style'
-//import { Home } from '../../Core/Home';
-//import { Shadow } from '../../Components/Shadow';
+import validator from 'validator';
+import axios from 'axios'
 
 class Login extends Component {
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
 
     signUpFun = () => {
         this.props.navigation.navigate('SignUp')
@@ -21,8 +28,37 @@ class Login extends Component {
     }
 
     SkibFun = () => {
+        this._storeData()
         this.props.navigation.navigate('Home')
     }
+
+    loginFun = () => {
+       
+        const { email, password } = this.state;
+        if (validator.isEmail(email) &&
+            validator.matches(password, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)) {
+            axios.post('http://192.168.1.23:8000/api/auth/login',
+                {
+                    email: email,
+                    password: password,
+                }).then(res => {this._storeData()}
+                )
+                .catch((err) => alert(err))
+
+        }
+        else {
+            alert('nooooo')
+        }
+
+    }
+    _storeData = async () => {
+        try {
+            await AsyncStorage.setItem('@MySuperStore:key', 'I like to save it.');
+        } catch (error) {
+            // Error saving data
+        }
+    }
+
     render() {
 
 
@@ -50,7 +86,7 @@ class Login extends Component {
                                 placeholderTextColor='white'
                                 placeholder='Phone'
                                 Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
-                            //onChangeText={this.onPhoneChange.bind(this)}
+                                onChangeText={(text) => this.setState({ email: text })}
                             //value={this.props.phone}
                             />
                         </View>
@@ -65,7 +101,7 @@ class Login extends Component {
                                 secure={true}
                                 placeholder='Password'
                                 Inputstyle={{ borderBottomWidth: 0.5, borderWidth: 0 }}
-                            //onChangeText={this.onPasswordChange.bind(this)}
+                                onChangeText={(text) => this.setState({ password: text })}
                             //value={this.props.password}
                             />
                         </View>
@@ -80,14 +116,16 @@ class Login extends Component {
                     </View>
 
                     <View style={{ flex: 1 }}>
-                        <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }}>LOGIN</Button>
+                        <Button style={Styles.signUpBtnStyle} textStyle={{ fontSize: 19, fontWeight: '900', }} whenClicked={this.loginFun}>LOGIN</Button>
                         <TouchableOpacity onPress={() => this.signUpFun()}>
                             <Text style={Styles.alreadyHaveStyle}>DONT HAVE AN ACCOUNT?
                         <Text style={Styles.signUpText}> SIGIN UP</Text>
                             </Text>
                         </TouchableOpacity>
                         <Button style={Styles.signUpStyle}
-                            whenClicked={this.SkibFun} textStyle={Styles.skibText}>SKIP</Button>
+                            whenClicked={this.SkibFun
+                            } textStyle={Styles.skibText}>SKIP
+                        </Button>
                     </View>
 
                 </View>
