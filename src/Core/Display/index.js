@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform,FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Platform, FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
@@ -10,71 +10,9 @@ import { deviceDimensions } from '../../utils/device-helper'
 import { Styles } from './Styles';
 const { deviceWidth, deviceHeight } = deviceDimensions
 
-const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
-const Data = [
-    [
-        {
-            title: 'Categores'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Offers'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Best Selling'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-       
-    ],
 
-]
+
+
 class Display extends Component {
 
     constructor(props) {
@@ -96,10 +34,12 @@ class Display extends Component {
 
         <View style={{ margin: 20 }}>
 
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('Kind')}>
+                <View style={Styles.shadowStyle}>
 
-            <View style={Styles.shadowStyle}>
-                <Text style={{ fontSize: 18 }}> Product Name </Text>
-            </View>
+                    <Text style={{ fontSize: 18 }}> {item.name}  </Text>
+                </View>
+            </TouchableOpacity>
         </View>
 
 
@@ -108,43 +48,47 @@ class Display extends Component {
 
     render() {
 
+        const data = this.props.navigation.getParam('Data')
+
+        const title = this.props.navigation.getParam('Title')
+
         return (
 
             <SafeAreaView style={{ flex: 1, }}>
-                <HeaderSub 
-                IconName1='bars'
-                IconName2='bell'
-                clicked={()=>{this.props.navigation.goBack()}}/>
+                <HeaderSub
+                    IconName1='bars'
+                    IconName2='bell'
+                    clicked={() => { this.props.navigation.goBack() }} />
                 <Shadow>
-                    <TouchableOpacity onPress={() => { alert('search') }}style={{paddingTop:Platform.OS=="android"?17:0,}}>
+                    <TouchableOpacity onPress={() => { alert('search') }} style={{ paddingTop: Platform.OS == "android" ? 17 : 0, }}>
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
-
+                <Text style={{ fontSize: 18, textAlign: 'center' }}>{title}</Text>
                 <ScrollView style={{ marginBottom: 20 }}>
 
-                 
 
-                    {
 
-                        Data.map(item => (
-                            console.log("test ", item),
-                            <View key={item}>
-                                 
-                                <FlatList
-                                    data={item}
-                                    showsHorizontalScrollIndicator={false}
-                                    horizontal
-                                    extraData={this.state}
-                                    keyExtractor={this._keyExtractor}
-                                    renderItem={this._renderItem}
-                                    //ListHeaderComponent={<Text>{item.id}</Text>}
-                                    style={{ paddingTop: 0 }}
-                                />
-                            </View>
-                        )
-                        )
-                    }
+
+
+
+                    <View key={data}>
+
+                        <FlatList
+                            data={data}
+                            showsHorizontalScrollIndicator={false}
+                            //   horizontal
+                            extraData={this.state}
+                            keyExtractor={this._keyExtractor}
+                            renderItem={this._renderItem}
+                            //ListHeaderComponent={<Text>{item.id}</Text>}
+                            style={{ paddingTop: 0 }}
+                            numColumns={2}
+                        />
+                    </View>
+
+
+
                 </ScrollView>
 
             </SafeAreaView>

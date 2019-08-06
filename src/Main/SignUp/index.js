@@ -21,13 +21,13 @@ class SignUp extends Component {
 
         // alert(this.state.password)
         const { name, email, password, confirmPassword } = this.state;
-        axios.post('http://192.168.1.23:8000/api/auth/register',
+        axios.post('http://market360.herokuapp.com/api/auth/register',
             {
-                name: name,
-                email: email,
-                password: password,
-                password_confirmation: confirmPassword
-            }).then(res =>{alert(res)})
+                "name": name,
+                "email": email,
+                "password": password,
+               // password_confirmation: confirmPassword
+            }).then(res =>{this.props.navigation.navigate('Home')})
             .catch((err)=>alert(err))
     }
     
@@ -35,14 +35,14 @@ class SignUp extends Component {
 
         if (validator.isEmail(this.state.email) &&
             validator.matches(this.state.password, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)
-            && validator.matches(this.state.name, /^[a-zA-Z0-9_-]*$/)
-            && validator.matches(this.state.confirmPassword, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)) {
-            if (this.state.password == this.state.confirmPassword) {
+            && validator.matches(this.state.name, /^[a-zA-Z0-9_-]*$/)){
+           // && validator.matches(this.state.confirmPassword, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)) {
+          //  if (this.state.password == this.state.confirmPassword) {
 
                 this._SignUp();
 
-            }
-            else{alert('please entered password coorectely ')}
+           // }
+           // else{alert('please entered password coorectely ')}
 
         }
 
