@@ -8,16 +8,18 @@ import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
 import { Styles } from './Styles'
 import axios from 'axios'
-const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
+//const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            DataKind:[],
             DataCategories: [],
             DataOfferes: [],
             DataBestSelling: [],
+
             dataFlageCat: false,
             dataFlageOff: false,
             dataFlageBest: false,
@@ -36,7 +38,8 @@ class Home extends Component {
 
             <TouchableOpacity
                 style={Styles.shadowStyle}
-                onPress={() => { this.props.navigation.navigate('Kind') }}
+                //onPress={() => { this.props.navigation.navigate('Kind') }}
+                onPress={() => { this.kindHandeler(this.state.DataKind) }}
 
             >
 
@@ -61,12 +64,24 @@ class Home extends Component {
                     dataFlageBest: true
                 }
 
-                ); console.log('res ', res.data.data.latest_Category)
+                );// console.log('res ', res.data.data.latest_Category)
             }
             )
             .catch((err) => alert(err))
 
+        axios.get('http://market360.herokuapp.com/api/products/2')
+            .then(res => {
+                this.setState({
+                    DataKind: res.data.data.Product_By_CatID,
+                    dataFlageCat: true,
+                    
+                   
+                }
 
+                ); console.log('res ', this.state.DataKind)
+            }
+            )
+            .catch((err) => alert(err))
 
     }
 
@@ -97,6 +112,11 @@ class Home extends Component {
     }
     seeAllHandeler = (item, title) => {
         this.props.navigation.navigate('Display', { Data: item, Title: title })
+    }
+
+
+    kindHandeler = (item) => {
+        this.props.navigation.navigate('Kind', { DataKind: item})
     }
     render() {
 
@@ -129,15 +149,7 @@ class Home extends Component {
                     {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : null}
                     {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : null}
 
-                    {/* 
-                    {
 
-                        Data.map(item => (
-                            console.log("test ", item),
-                            
-                        )
-                        )
-                    } */}
                 </ScrollView>
 
             </View>

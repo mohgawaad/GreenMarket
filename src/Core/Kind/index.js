@@ -6,8 +6,8 @@ import { Search } from '../../Components/Search';
 import { Images } from '../../assets/Images';
 import { SafeAreaView } from 'react-navigation';
 import Swiper from 'react-native-swiper';
+import axios from 'axios'
 import { Styles } from './Styles'
-import { store } from '../../store/store'
 
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 
@@ -16,7 +16,9 @@ class Kind extends Component {
     constructor(props) {
         super(props);
         //this.props.navigation.navigate('Intro')
-        this.state = {
+        this.state={
+        }
+        /* this.state = {
             Data: [
 
                 {
@@ -47,7 +49,7 @@ class Kind extends Component {
 
 
             ]
-        }
+        } */
 
     }
     _keyExtractor = (item, index) => {/*  alert("extractor "+item.id) ; */return item.id };
@@ -62,14 +64,15 @@ class Kind extends Component {
             }}
         /> */
 
+        
         <View style={{ margin: 20 }}>
 
-
+{console.log("item",item)}
             <TouchableOpacity style={Styles.shadowStyle}
                 onPress={() => { this.props.navigation.navigate('Prices') }}
             //onPress={()=> this.handleItemPressed(item.id)}
             >
-                <Text style={{ fontSize: 18 }}>hello  {item.image} </Text>
+                <Text style={{ fontSize: 18 }}>  {item.name} </Text>
             </TouchableOpacity>
         </View>
 
@@ -86,6 +89,10 @@ class Kind extends Component {
         // Data = filterData;
     }
     render() {
+        const data = this.props.navigation.getParam('DataKind')
+   
+        //const title = this.props.navigation.getParam('Title')
+        console.log('datadatadatadata ' , data)
 
         return (
 
@@ -132,7 +139,7 @@ class Kind extends Component {
 
 
                     <FlatList
-                        data={this.state.Data}
+                        data={data}
                         showsHorizontalScrollIndicator={false}
                         numColumns={2}
                         extraData={this.state}
