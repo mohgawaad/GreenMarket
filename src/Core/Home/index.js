@@ -9,6 +9,13 @@ import Swiper from 'react-native-swiper';
 import { Styles } from './Styles'
 import axios from 'axios'
 //const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
+import {
+    Placeholder,
+    PlaceholderMedia,
+    PlaceholderLine,
+    Fade, Shine, ShineOverlay
+} from "rn-placeholder";
+
 
 class Home extends Component {
 
@@ -118,6 +125,69 @@ class Home extends Component {
     kindHandeler = (URL, NAME) => {
         this.props.navigation.navigate('Kind', { MyUrl: URL, MyName: NAME })
     }
+    loading = () => (
+        <Placeholder>
+            <Placeholder
+                Left={
+                    props => (
+                        <PlaceholderLine
+                            Animation={ShineOverlay}
+                            width={40}
+                            height={20}
+                            style={{
+                                margin: 10,
+                            }}
+                        />
+                    )
+                }
+                Right={
+                    props => (
+                        <PlaceholderLine
+                            Animation={ShineOverlay}
+                            width={20}
+                            height={20}
+                            style={{
+                                margin: 10,
+                            }}
+                        />
+                    )
+                }
+
+                Animation={Shine}
+            >
+
+            </Placeholder>
+            <Placeholder
+                Left={
+                    props => (
+                        <PlaceholderMedia
+                            Animation={ShineOverlay}
+                            size={160}
+                            style={{
+                                margin: 10,
+                            }}
+                        />
+                    )
+                }
+                Right={
+                    props => (
+                        <PlaceholderMedia
+                            Animation={ShineOverlay}
+                            size={160}
+                            style={{
+                                margin: 10,
+                            }}
+                        />
+                    )
+                }
+
+                Animation={Shine}
+            >
+
+            </Placeholder>
+        </Placeholder>
+    )
+
     render() {
 
 
@@ -125,6 +195,7 @@ class Home extends Component {
 
             <View style={{ flex: 1, }}>
                 <Header />
+
                 <Shadow>
                     <TouchableOpacity onPress={() => alert('search')}>
                         <Search />
@@ -145,9 +216,10 @@ class Home extends Component {
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
 
-                    {this.state.dataFlageCat ? this.requestHandler(this.state.DataCategories, 'Categories') : null}
-                    {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : null}
-                    {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : null}
+
+                    {this.state.dataFlageCat ? this.requestHandler(this.state.DataCategories, 'Categories') : this.loading()}
+                    {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : this.loading()}
+                    {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : this.loading()}
 
 
                 </ScrollView>

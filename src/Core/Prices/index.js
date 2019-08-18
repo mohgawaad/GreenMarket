@@ -66,13 +66,13 @@ class Prices extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            quantity: 1,
             dataItem: this.props.navigation.getParam("Item"),
             dataTitle: this.props.navigation.getParam("MyTitle"),
-            
-            
+
+
         }
-        console.log('dataItem ',this.state.dataItem)
+        console.log('dataItem ', this.state.dataItem)
     }
 
 
@@ -133,7 +133,7 @@ class Prices extends Component {
 
                             <View style={Styles.countContainerStyle}>
                                 <View style={Styles.boxStyle}>
-                                    <Text style={Styles.countStyle}>1</Text>
+                                    <Text style={Styles.countStyle}>{this.state.quantity}</Text>
                                 </View>
 
                                 <View style={{ marginHorizontal: 10 }}>
