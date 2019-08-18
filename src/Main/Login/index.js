@@ -37,11 +37,11 @@ class Login extends Component {
         const { email, password } = this.state;
         if (validator.isEmail(email) &&
             validator.matches(password, /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}/)) {
-            axios.post('http://192.168.1.23:8000/api/auth/login',
+            axios.post('http://market360.herokuapp.com/api/auth/login',
                 {
-                    email: email,
-                    password: password,
-                }).then(res => {this._storeData()}
+                    "email": email,
+                    "password": password,
+                }).then(res => {this.props.navigation.navigate('Home')/* this._storeData() */}
                 )
                 .catch((err) => alert(err))
 

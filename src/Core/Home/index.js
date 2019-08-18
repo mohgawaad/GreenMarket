@@ -8,94 +8,24 @@ import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
 import { Styles } from './Styles'
 import axios from 'axios'
-const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
-const Data = [
-    [
-        {
-            title: 'Categores'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Offers'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-    [
-        {
-            title: 'Best Selling'
-        }, {
-            id: 1,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 2,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 3,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 4,
-            image: require('../../assets/Images/hand.png')
-        },
-        {
-            id: 5,
-            image: require('../../assets/Images/hand.png')
-        },
-    ],
-
-]
+//const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+
             DataCategories: [],
             DataOfferes: [],
             DataBestSelling: [],
+
             dataFlageCat: false,
             dataFlageOff: false,
             dataFlageBest: false,
+            links: {
+
+            }
         }
     }
     _keyExtractor = (item, index) => item.id;
@@ -108,7 +38,8 @@ class Home extends Component {
 
             <TouchableOpacity
                 style={Styles.shadowStyle}
-                onPress={() => { this.props.navigation.navigate('Kind') }}
+                //onPress={() => { this.props.navigation.navigate('Kind') }}
+                onPress={() => { this.kindHandeler(item.link, item.name) }}
 
             >
 
@@ -133,13 +64,25 @@ class Home extends Component {
                     dataFlageBest: true
                 }
 
-                );  console.log('res ', res.data.data.latest_Category)
+                ); console.log('res ', res.data.data.latest_Category)
             }
             )
             .catch((err) => alert(err))
 
+        /* axios.get('http://market360.herokuapp.com/api/products/2')
+            .then(res => {
+                this.setState({
+                    DataKind: res.data.data.Product_By_CatID,
+                    dataFlageCat: true,
+                    
+                   
+                }
 
-      
+                ); console.log('res ', this.state.DataKind)
+            }
+            )
+            .catch((err) => alert(err)) */
+
     }
 
     requestHandler = (item, title) => {
@@ -149,7 +92,7 @@ class Home extends Component {
 
                 <View style={Styles.headerTitleStyle}>
                     <Text style={{ fontSize: 18 }}> {title} </Text>
-                    <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
+                    <Text onPress={() => this.seeAllHandeler(item, title)}>see all</Text>
                 </View>
 
                 <FlatList
@@ -167,7 +110,14 @@ class Home extends Component {
             </View>
         )
     }
+    seeAllHandeler = (item, title) => {
+        this.props.navigation.navigate('Display', { Data: item, Title: title })
+    }
 
+
+    kindHandeler = (URL, NAME) => {
+        this.props.navigation.navigate('Kind', { MyUrl: URL, MyName: NAME })
+    }
     render() {
 
 
@@ -195,19 +145,11 @@ class Home extends Component {
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
 
-                    {this.state.dataFlage ? this.requestHandler(this.state.DataCategories, 'Categories') : null}
-                    {this.state.dataFlage ? this.requestHandler(this.state.DataOfferes, 'Offers') : null}
-                    {this.state.dataFlage ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : null}
- 
-                    {/* 
-                    {
+                    {this.state.dataFlageCat ? this.requestHandler(this.state.DataCategories, 'Categories') : null}
+                    {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : null}
+                    {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : null}
 
-                        Data.map(item => (
-                            console.log("test ", item),
-                            
-                        )
-                        )
-                    } */}
+
                 </ScrollView>
 
             </View>
