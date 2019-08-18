@@ -9,48 +9,37 @@ import Swiper from 'react-native-swiper';
 import axios from 'axios'
 import { Styles } from './Styles'
 
-const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 
 class Kind extends Component {
 
     constructor(props) {
         super(props);
         //this.props.navigation.navigate('Intro')
-        this.state={
+        this.state = {
+            DataKind: [],
+            dataFlageKind: false,
+            url: this.props.navigation.getParam("MyUrl"),
+            title: this.props.navigation.getParam("MyName")
         }
-        /* this.state = {
-            Data: [
-
-                {
-                    id: 0,
-                    title: 'Categores'
-                }, {
-                    id: 1,
-                    image: '../../assets/Images/hand.png'
-                },
-                {
-                    id: 2,
-                    image: '../../assets/Images/hand.png'
-                },
-                {
-                    id: 3,
-                    image: '../../assets/Images/hand.png'
-                },
-                {
-                    id: 4,
-                    image: '../../assets/Images/hand.png'
-                },
-                {
-                    id: 5,
-                    image: '../../assets/Images/hand.png'
-                },
 
 
+    }
+    componentDidMount() {
+        axios.get(this.state.url)
+            .then(res => {
+                console.log('ressssssss', res)
+                this.setState({
+                    DataKind: res.data.data.Product_By_CatID,
+                    dataFlageKind: true,
 
 
-            ]
-        } */
+                }
 
+                );
+                console.log('res ', this.state.DataKind)
+            }
+            )
+            .catch((err) => alert(err))
     }
     _keyExtractor = (item, index) => {/*  alert("extractor "+item.id) ; */return item.id };
 
@@ -64,12 +53,12 @@ class Kind extends Component {
             }}
         /> */
 
-        
+
         <View style={{ margin: 20 }}>
 
-{console.log("item",item)}
+            {console.log("item", item)}
             <TouchableOpacity style={Styles.shadowStyle}
-                onPress={() => { this.props.navigation.navigate('Prices') }}
+                onPress={() => { this.props.navigation.navigate('Prices', { Item: item, MyTitle: this.state.title }) }}
             //onPress={()=> this.handleItemPressed(item.id)}
             >
                 <Text style={{ fontSize: 18 }}>  {item.name} </Text>
@@ -89,10 +78,10 @@ class Kind extends Component {
         // Data = filterData;
     }
     render() {
-        const data = this.props.navigation.getParam('DataKind')
-   
+        const data = this.state.DataKind
+
         //const title = this.props.navigation.getParam('Title')
-        console.log('datadatadatadata ' , data)
+        console.log('datadatadatadata ', data)
 
         return (
 
@@ -120,7 +109,7 @@ class Kind extends Component {
                     </Swiper>
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={Styles.titleStyle}>Drinks</Text>
+                    <Text style={Styles.titleStyle}>{this.state.title}</Text>
                     {/* {
                         TitleData.map(item => (
                             console.log("test ", item),

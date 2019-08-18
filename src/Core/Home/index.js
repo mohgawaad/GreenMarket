@@ -15,7 +15,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            DataKind:[],
+
             DataCategories: [],
             DataOfferes: [],
             DataBestSelling: [],
@@ -39,7 +39,7 @@ class Home extends Component {
             <TouchableOpacity
                 style={Styles.shadowStyle}
                 //onPress={() => { this.props.navigation.navigate('Kind') }}
-                onPress={() => { this.kindHandeler(this.state.DataKind) }}
+                onPress={() => { this.kindHandeler(item.link, item.name) }}
 
             >
 
@@ -64,12 +64,12 @@ class Home extends Component {
                     dataFlageBest: true
                 }
 
-                );// console.log('res ', res.data.data.latest_Category)
+                ); console.log('res ', res.data.data.latest_Category)
             }
             )
             .catch((err) => alert(err))
 
-        axios.get('http://market360.herokuapp.com/api/products/2')
+        /* axios.get('http://market360.herokuapp.com/api/products/2')
             .then(res => {
                 this.setState({
                     DataKind: res.data.data.Product_By_CatID,
@@ -81,7 +81,7 @@ class Home extends Component {
                 ); console.log('res ', this.state.DataKind)
             }
             )
-            .catch((err) => alert(err))
+            .catch((err) => alert(err)) */
 
     }
 
@@ -115,8 +115,8 @@ class Home extends Component {
     }
 
 
-    kindHandeler = (item) => {
-        this.props.navigation.navigate('Kind', { DataKind: item})
+    kindHandeler = (URL, NAME) => {
+        this.props.navigation.navigate('Kind', { MyUrl: URL, MyName: NAME })
     }
     render() {
 

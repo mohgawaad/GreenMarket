@@ -10,6 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Button } from '../../Components/Button';
 import { Styles } from './Styles'
 import { deviceDimensions } from '../../utils/device-helper'
+//import console = require('console');
+//import axios from 'axios'
+
 const { deviceWidth, deviceHeight } = deviceDimensions
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const SimilarData = [
@@ -62,10 +65,17 @@ class Prices extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
 
+            dataItem: this.props.navigation.getParam("Item"),
+            dataTitle: this.props.navigation.getParam("MyTitle"),
+            
+            
+        }
+        console.log('dataItem ',this.state.dataItem)
     }
 
-    
+
     _keyExtractor = (item, index) => item.id;
 
     _renderItem = ({ item }) => (
@@ -74,7 +84,7 @@ class Prices extends Component {
         </Card>
     )
     _renderItem2 = ({ item }) => (
-       
+
 
         <View style={{ margin: 20 }}>
 
@@ -101,29 +111,29 @@ class Prices extends Component {
 
             <SafeAreaView style={{ flex: 1, }}>
                 <HeaderSub
-                IconName1='bars'
-                IconName2='bell'
+                    IconName1='bars'
+                    IconName2='bell'
                     clicked={() => { this.props.navigation.goBack() }} />
 
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={Styles.textTitleStyle}>Drinks</Text>
+                    <Text style={Styles.textTitleStyle}>{this.state.dataTitle}</Text>
                     <View style={Styles.PurchasesStyle}>
 
 
                         <View >
                             <Card style={Styles.leftPartStyle}>
-                                <Text>Hiiiii</Text>
+                                <Text>{this.state.dataItem.name}</Text>
                             </Card>
                         </View>
 
                         <View style={Styles.rightPartStyle}>
                             <View>
-                                <Text style={Styles.priceTextStyle}>10 LE</Text>
+                                <Text style={Styles.priceTextStyle}>{this.state.dataItem.price} LE</Text>
                             </View>
 
                             <View style={Styles.countContainerStyle}>
                                 <View style={Styles.boxStyle}>
-                                    <Text style={Styles.countStyle}>1000</Text>
+                                    <Text style={Styles.countStyle}>1</Text>
                                 </View>
 
                                 <View style={{ marginHorizontal: 10 }}>
@@ -147,7 +157,7 @@ class Prices extends Component {
 
                                 </View>
                             </View>
-                            
+
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ paddingTop: 20 }}>
                                     <Icon
@@ -159,7 +169,7 @@ class Prices extends Component {
 
                                 <Button
                                     style={Styles.buttonStyle}
-                                    whenClicked={()=>{this.props.navigation.navigate('FinalCart')}}
+                                    whenClicked={() => { this.props.navigation.navigate('FinalCart') }}
                                     textStyle={Styles.loginText}>
                                     ADD TO CART
                             </Button>
