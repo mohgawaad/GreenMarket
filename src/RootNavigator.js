@@ -2,7 +2,8 @@ import {
     createStackNavigator,
     createAppContainer,
     createBottomTabNavigator,
-    createSwitchNavigator
+    createSwitchNavigator,
+    createDrawerNavigator
 } from 'react-navigation';
 
 
@@ -11,37 +12,14 @@ import { Intro } from './Main/Intro'
 import { Login } from './Main/Login'
 import { SignUp } from './Main/SignUp'
 import { Reset } from './Main/Reset'
-//import { Shadow } from './Components/Shadow'
 import { Home } from './Core/Home';
 import { Display } from './Core/Display';
 import { Kind } from './Core/Kind';
-import { Prices } from './Core/Prices';
+import  Prices  from './Core/Prices';
 import { FinalCart } from './Core/FinalCart';
-import { Goo } from './Core/Goo';
 
 
-const GreenBottomTab = createBottomTabNavigator({
-    Splash1: {
-        screen: Login,
-        navigationOptions: {
-            header: null
-        }
-    },
 
-    Splash2: {
-        screen: Splash,
-        /*  navigationOptions: {
-             header: null
-         } */
-    },
-    Splash3: {
-        screen: Intro,
-        /* navigationOptions: {
-            header: null 
-        }*/
-    },
-    
-})
 
 const GreenHome = createStackNavigator(
     {
@@ -56,74 +34,78 @@ const GreenHome = createStackNavigator(
         Intro: {
             screen: Intro,
             navigationOptions: {
-                header: null ,
-                
+                header: null,
+
             }
         },
         Login: {
             screen: Login,
             navigationOptions: {
-                header: null 
+                header: null
             }
         },
         SignUp: {
             screen: SignUp,
             navigationOptions: {
-                header: null 
+                header: null
             }
         },
         Reset: {
             screen: Reset,
             navigationOptions: {
-                header: null 
+                header: null
             }
         },
-        Home: {
-            screen: Home,
-            navigationOptions: {
-                header: null 
-            }
-        },
-        Display: {
-            screen: Display,
-            navigationOptions: {
-                header: null 
-            }
-        },
-        Kind: {
-            screen: Kind,
-            navigationOptions: {
-                header: null 
-            }
-        },
-        Prices: {
-            screen: Prices,
-            navigationOptions: {
-                header: null 
-            }
-        },
-        FinalCart: {
-            screen: FinalCart,
-            navigationOptions: {
-                header: null 
-            }
-        },
-        Goo: {
-            screen: Goo,
-            navigationOptions: {
-                header: null 
-            }
-        }
         
-
+      
     }
 );
 
 
 
+
+/**/ const DrawerNavigator = createDrawerNavigator({
+
+    //GreenHome
+
+        Home: {
+            screen: Home,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Display: {
+            screen: Display,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Kind: {
+            screen: Kind,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Prices: {
+            screen: Prices,
+            navigationOptions: {
+                header: null
+            }
+        },
+        FinalCart: {
+            screen: FinalCart,
+            navigationOptions: {
+                header: null
+            }
+        },
+
+
+
+    
+});
 const switcher = createSwitchNavigator({
     frist: GreenHome,
-    second: GreenBottomTab
+    second: DrawerNavigator
 })
+export default createAppContainer(switcher); 
 
-export default createAppContainer(GreenHome);

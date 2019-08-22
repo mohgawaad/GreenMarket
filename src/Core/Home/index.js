@@ -3,18 +3,22 @@ import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, S
 import { Header } from '../../Components/Header';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
+import { Loading } from '../../Components/Loading';
+
+
 //import { Images } from '../../assets/Images';
 import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
 import { Styles } from './Styles'
 import axios from 'axios'
 //const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
-import {
+/* import {
     Placeholder,
     PlaceholderMedia,
     PlaceholderLine,
     Fade, Shine, ShineOverlay
-} from "rn-placeholder";
+} from "rn-placeholder"; */
+
 
 
 class Home extends Component {
@@ -63,7 +67,7 @@ class Home extends Component {
         axios.get('http://market360.herokuapp.com/api')
             .then(res => {
                 this.setState({
-                    DataCategories: res.data.data.latest_Category,
+                    DataCategories: res.data.data.lateast_Category,
                     dataFlageCat: true,
                     DataOfferes: res.data.data.best_offers,
                     dataFlageOff: true,
@@ -71,7 +75,7 @@ class Home extends Component {
                     dataFlageBest: true
                 }
 
-                ); console.log('res ', res.data.data.latest_Category)
+                ); console.log('res ', res.data.data.lateast_Category)
             }
             )
             .catch((err) => alert(err))
@@ -125,7 +129,7 @@ class Home extends Component {
     kindHandeler = (URL, NAME) => {
         this.props.navigation.navigate('Kind', { MyUrl: URL, MyName: NAME })
     }
-    loading = () => (
+    /* loading = () => (
         <Placeholder>
             <Placeholder
                 Left={
@@ -186,7 +190,7 @@ class Home extends Component {
 
             </Placeholder>
         </Placeholder>
-    )
+    ) */
 
     render() {
 
@@ -194,7 +198,7 @@ class Home extends Component {
         return (
 
             <View style={{ flex: 1, }}>
-                <Header />
+                <Header onPress={()=>{ this.props.navigation.openDrawer()}}/>
 
                 <Shadow>
                     <TouchableOpacity onPress={() => alert('search')}>
@@ -217,9 +221,9 @@ class Home extends Component {
                 <ScrollView style={{ marginBottom: 20 }}>
 
 
-                    {this.state.dataFlageCat ? this.requestHandler(this.state.DataCategories, 'Categories') : this.loading()}
-                    {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : this.loading()}
-                    {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : this.loading()}
+                    {this.state.dataFlageCat ? this.requestHandler(this.state.DataCategories, 'Categories') : <Loading/>}
+                    {this.state.dataFlageOff ? this.requestHandler(this.state.DataOfferes, 'Offers') : <Loading/>}
+                    {this.state.dataFlageBest ? this.requestHandler(this.state.DataBestSelling, 'Best Selling') : <Loading/>}
 
 
                 </ScrollView>

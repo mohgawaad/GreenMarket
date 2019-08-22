@@ -10,7 +10,7 @@ import { Button } from './Button';
 class Header extends Component {
     constructor(props) {
         super(props);
-        
+
     }
     render() {
         const { TextStyle, ViewStyle, containerStyle } = styles;
@@ -18,20 +18,20 @@ class Header extends Component {
 
         return (
             <View style={containerStyle}>
-               
-                <View style={{ flex: 1,alignItems:'flex-start' ,marginBottom:15 , paddingHorizontal:20  }}>
 
+                <View style={{ flex: 1, alignItems: 'flex-start', marginBottom: 15, paddingHorizontal: 20 }}>
 
-                    <Icon
-                        name="bars"
-                        size={25}
+                    <TouchableOpacity onPress={this.props.onPress}>
+                        <Icon
+                            name="bars"
+                            size={25}
 
-                        color={'gray'} />
-         
-                        
+                            color={'gray'} />
+                    </TouchableOpacity>
+
                 </View>
-           
-                <View style={{ flex: 1,alignItems:'flex-end' ,marginBottom:15 , paddingRight:20  }}>
+
+                <View style={{ flex: 1, alignItems: 'flex-end', marginBottom: 15, paddingRight: 20 }}>
 
 
                     <Icon
@@ -40,7 +40,7 @@ class Header extends Component {
 
                         color={'gray'} />
 
-                        
+
                 </View>
 
 
@@ -64,8 +64,8 @@ const styles = {
     },
     TextStyle: {
         fontSize: 20,
-        color:'gray',
-        fontWeight:'bold',
+        color: 'gray',
+        fontWeight: 'bold',
         //width:150
     },
     containerStyle: {
@@ -73,9 +73,9 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'space-between',
         flexDirection: 'row',
-         height: Platform.OS=="android"?60:100,
+        height: Platform.OS == "android" ? 60 : 100,
         //paddingTop: 50,
-        
+
 
     }
 }

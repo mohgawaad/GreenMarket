@@ -3,6 +3,7 @@ import { Platform, FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity
 import { HeaderSub } from '../../Components/HeaderSub';
 import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
+import { LoadingKind } from '../../Components/LoadingKind';
 import { Images } from '../../assets/Images';
 import { SafeAreaView } from 'react-navigation';
 import Swiper from 'react-native-swiper';
@@ -109,35 +110,26 @@ class Kind extends Component {
                     </Swiper>
                 </View>
                 <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={Styles.titleStyle}>{this.state.title}</Text>
-                    {/* {
-                        TitleData.map(item => (
-                            console.log("test ", item),
-                            <View key={item}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 20 }}>
-                                    <Text>{item.title}</Text>
-                                    <Text>see all</Text>
-                                </View>
-                            </View>
-                        )
-                        )
-                    } */}
 
 
 
 
+                    {this.state.dataFlageKind ?
+                    <View>
+                        <Text style={Styles.titleStyle}>{this.state.title}</Text>
 
-                    <FlatList
-                        data={data}
-                        showsHorizontalScrollIndicator={false}
-                        numColumns={2}
-                        extraData={this.state}
-                        keyExtractor={this._keyExtractor}
-                        renderItem={this._renderItem}
-                        // ListHeaderComponent={<Text>{item.title}</Text>}
-                        style={{ paddingTop: 0 }}
-                    />
-
+                        <FlatList
+                            data={data}
+                            showsHorizontalScrollIndicator={false}
+                            numColumns={2}
+                            extraData={this.state}
+                            keyExtractor={this._keyExtractor}
+                            renderItem={this._renderItem}
+                            // ListHeaderComponent={<Text>{item.title}</Text>}
+                            style={{ paddingTop: 0 }}
+                        />
+                        </View>
+                        : <LoadingKind />}
                 </ScrollView>
 
             </SafeAreaView>

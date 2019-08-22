@@ -13,6 +13,15 @@ import { deviceDimensions } from '../../utils/device-helper'
 //import console = require('console');
 //import axios from 'axios'
 
+import { changeQty } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';  
+
+
+
+
+
+
 const { deviceWidth, deviceHeight } = deviceDimensions
 const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 const SimilarData = [
@@ -66,7 +75,7 @@ class Prices extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            quantity: 1,
+            //quantity: 1,
             dataItem: this.props.navigation.getParam("Item"),
             dataTitle: this.props.navigation.getParam("MyTitle"),
 
@@ -106,8 +115,7 @@ class Prices extends Component {
 
 
     render() {
-
-        return (
+         return (
 
             <SafeAreaView style={{ flex: 1, }}>
                 <HeaderSub
@@ -133,12 +141,12 @@ class Prices extends Component {
 
                             <View style={Styles.countContainerStyle}>
                                 <View style={Styles.boxStyle}>
-                                    <Text style={Styles.countStyle}>{this.state.quantity}</Text>
+                                    <Text style={Styles.countStyle}>{this.props.qty}</Text>
                                 </View>
 
                                 <View style={{ marginHorizontal: 10 }}>
                                     <TouchableOpacity
-                                        onPress={() => { alert('up') }}
+                                        onPress={() => { this.props.changeQty(this.props.qty+1)}}
                                     >
                                         <Icon
                                             name="chevron-up"
@@ -148,7 +156,7 @@ class Prices extends Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity
-                                        onPress={() => { alert('down') }}>
+                                        onPress={() => { if(this.props.qty>1)this.props.changeQty(this.props.qty-1)}}>
                                         <Icon
                                             name="chevron-down"
                                             size={15}
@@ -218,4 +226,14 @@ class Prices extends Component {
 const styles = StyleSheet.create({
 
 });
-export { Prices }
+const mapStateToProps=(state)=>{
+    const {qty}=state.qun;
+    return{qty};
+
+
+}
+const mapDispatchToProps=(dispatch)=>{
+     return bindActionCreators({changeQty},dispatch)
+    
+}
+export default connect (mapStateToProps,mapDispatchToProps)(Prices) 
