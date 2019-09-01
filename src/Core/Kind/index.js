@@ -10,6 +10,9 @@ import Swiper from 'react-native-swiper';
 import axios from 'axios'
 import { Styles } from './Styles'
 
+import { kindHandler } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Kind extends Component {
 
@@ -17,31 +20,54 @@ class Kind extends Component {
         super(props);
         //this.props.navigation.navigate('Intro')
         this.state = {
-            DataKind: [],
+            DataKind: '',//this.props.dataOfKind ? this.props.dataOfKind.URL: '' ,
             dataFlageKind: false,
-            url: this.props.navigation.getParam("MyUrl"),
-            title: this.props.navigation.getParam("MyName")
+            // url: this.props.navigation.getParam("MyUrl"),
+            //
+            title: '',//this.props.dataOfKind ? this.props.title.dataOfKind.NAME : ''
         }
 
-
+       // this.props.kindHandler("http://market360.herokuapp.com/api/products/2")
     }
-    componentDidMount() {
-        axios.get(this.state.url)
-            .then(res => {
-                console.log('ressssssss', res)
-                this.setState({
-                    DataKind: res.data.data.Product_By_CatID,
-                    dataFlageKind: true,
 
+    /*  componentWillReceiveProps(nextProps) {
+         console.log("hehehedfergergergergerkejdwekdewkd" , nextProps)
+         axios.get(nextProps.navigation.state.params.MyUrl)
+             .then(res => {
+                 console.log('ressssssss', res.data.data.Product_By_CatID)
+                 this.setState({
+                     DataKind: res.data.data.Product_By_CatID,
+                     dataFlageKind: true,
+ 
+ 
+                 }
+ 
+                 );
+                 console.log('res ', this.state.DataKind)
+             }
+             )
+             .catch((err) => alert(err))
+ 
+     } */
+    /*  componentDidMount() {
+         console.log("hehehedkejdwekdewkd" , )
+         axios.get(this.state.url)
+             .then(res => {
+                 console.log('ressssssss', res.data.data.Product_By_CatID)
+                 this.setState({
+                     DataKind: res.data.data.Product_By_CatID,
+                     dataFlageKind: true,
+ 
+ 
+                 }
+ 
+                 );
+                 console.log('res ', this.state.DataKind)
+             }
+             )
+             .catch((err) => alert(err))
+     } */
 
-                }
-
-                );
-                console.log('res ', this.state.DataKind)
-            }
-            )
-            .catch((err) => alert(err))
-    }
     _keyExtractor = (item, index) => {/*  alert("extractor "+item.id) ; */return item.id };
 
     _renderItem = ({ item }) => (
@@ -79,14 +105,15 @@ class Kind extends Component {
         // Data = filterData;
     }
     render() {
-        const data = this.state.DataKind
+        const data = this.props.dataOfKind
 
         //const title = this.props.navigation.getParam('Title')
-        console.log('datadatadatadata ', data)
+        console.log('datadatadatadata ', this.props.dataOfKind)
 
         return (
 
             <SafeAreaView style={{ flex: 1 }}>
+
                 <HeaderSub
                     IconName1='bars'
                     IconName2='bell'
@@ -115,19 +142,19 @@ class Kind extends Component {
 
 
                     {this.state.dataFlageKind ?
-                    <View>
-                        <Text style={Styles.titleStyle}>{this.state.title}</Text>
+                        <View>
+                            <Text style={Styles.titleStyle}>{this.state.title}</Text>
 
-                        <FlatList
-                            data={data}
-                            showsHorizontalScrollIndicator={false}
-                            numColumns={2}
-                            extraData={this.state}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                            // ListHeaderComponent={<Text>{item.title}</Text>}
-                            style={{ paddingTop: 0 }}
-                        />
+                            <FlatList
+                                data={this.props.dataOfKind}
+                                showsHorizontalScrollIndicator={false}
+                                numColumns={2}
+                                extraData={this.state}
+                                keyExtractor={this._keyExtractor}
+                                renderItem={this._renderItem}
+                                // ListHeaderComponent={<Text>{item.title}</Text>}
+                                style={{ paddingTop: 0 }}
+                            />
                         </View>
                         : <LoadingKind />}
                 </ScrollView>
@@ -165,5 +192,17 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold'
     }
-});
-export { Kind }
+})
+
+const mapStateToProps = (state) => {
+    console.log("state ", state.kindd)
+    const { dataOfKind } = state.kindd;
+    return { dataOfKind };
+
+
+}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ kindHandler }, dispatch)
+
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Kind)

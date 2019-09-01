@@ -22,4 +22,20 @@ headerTitleStyle:{
     justifyContent: 'space-between', 
     margin: 20 
 },
+
+    boxStyle:{ 
+        borderWidth: 1, 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+    },
+    priceTextStyle:{ 
+        fontSize: 30 
+    },
+    countContainerStyle:{ 
+        flexDirection: 'row', 
+        marginHorizontal: 40, 
+    },  countStyle:{ 
+        textAlign: 'center', 
+        paddingHorizontal: 5 
+    },
 })

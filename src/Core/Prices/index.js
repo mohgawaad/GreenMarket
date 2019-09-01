@@ -112,7 +112,9 @@ class Prices extends Component {
 
 
     );
-
+decOfMount=()=>{
+    if(this.props.qty>1) {this.props.changeQty(this.props.qty-1)}
+}
 
     render() {
          return (
@@ -121,7 +123,7 @@ class Prices extends Component {
                 <HeaderSub
                     IconName1='bars'
                     IconName2='bell'
-                    clicked={() => { this.props.navigation.goBack() }} />
+                    clicked={() => { this.props.navigation.navigate("Kind") }} />
 
                 <ScrollView style={{ marginBottom: 20 }}>
                     <Text style={Styles.textTitleStyle}>{this.state.dataTitle}</Text>
@@ -155,8 +157,8 @@ class Prices extends Component {
 
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity
-                                        onPress={() => { if(this.props.qty>1)this.props.changeQty(this.props.qty-1)}}>
+                                    <TouchableOpacity onPress={()=>{ this.decOfMount()}}>
+
                                         <Icon
                                             name="chevron-down"
                                             size={15}

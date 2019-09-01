@@ -5,13 +5,16 @@ import { Shadow } from '../../Components/Shadow';
 import { Search } from '../../Components/Search';
 import { Loading } from '../../Components/Loading';
 
+import { kindHandler } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'; 
 
 //import { Images } from '../../assets/Images';
 import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
 import { Styles } from './Styles'
 import axios from 'axios'
-//const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
+ //const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
 /* import {
     Placeholder,
     PlaceholderMedia,
@@ -50,7 +53,7 @@ class Home extends Component {
             <TouchableOpacity
                 style={Styles.shadowStyle}
                 //onPress={() => { this.props.navigation.navigate('Kind') }}
-                onPress={() => { this.kindHandeler(item.link, item.name) }}
+                onPress={() => { this.myKindHandeler(item.link, item.name) }}
 
             >
 
@@ -126,75 +129,17 @@ class Home extends Component {
     }
 
 
-    kindHandeler = (URL, NAME) => {
-        this.props.navigation.navigate('Kind', { MyUrl: URL, MyName: NAME })
+    myKindHandeler = (URL, NAME) => {
+        
+        this.props.kindHandler({URL,NAME})
+        console.log("fwefvjklwefvekwfjkwefekw")
+        this.props.navigation.navigate('Kind')
     }
-    /* loading = () => (
-        <Placeholder>
-            <Placeholder
-                Left={
-                    props => (
-                        <PlaceholderLine
-                            Animation={ShineOverlay}
-                            width={40}
-                            height={20}
-                            style={{
-                                margin: 10,
-                            }}
-                        />
-                    )
-                }
-                Right={
-                    props => (
-                        <PlaceholderLine
-                            Animation={ShineOverlay}
-                            width={20}
-                            height={20}
-                            style={{
-                                margin: 10,
-                            }}
-                        />
-                    )
-                }
-
-                Animation={Shine}
-            >
-
-            </Placeholder>
-            <Placeholder
-                Left={
-                    props => (
-                        <PlaceholderMedia
-                            Animation={ShineOverlay}
-                            size={160}
-                            style={{
-                                margin: 10,
-                            }}
-                        />
-                    )
-                }
-                Right={
-                    props => (
-                        <PlaceholderMedia
-                            Animation={ShineOverlay}
-                            size={160}
-                            style={{
-                                margin: 10,
-                            }}
-                        />
-                    )
-                }
-
-                Animation={Shine}
-            >
-
-            </Placeholder>
-        </Placeholder>
-    ) */
+    
 
     render() {
 
-
+       console.log("kindHandlerkindHandler " , this.props.kindHandler)
         return (
 
             <View style={{ flex: 1, }}>
@@ -262,4 +207,16 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
-export { Home }
+
+const mapStateToProps=(state)=>{
+    const {dataOfKind}=state.kindd;
+    return{dataOfKind};
+
+
+}
+const mapDispatchToProps=(dispatch)=>{
+     return bindActionCreators({kindHandler},dispatch)
+    
+}
+export default connect (mapStateToProps,mapDispatchToProps) (Home)
+

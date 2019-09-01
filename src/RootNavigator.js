@@ -12,12 +12,12 @@ import { Intro } from './Main/Intro'
 import { Login } from './Main/Login'
 import { SignUp } from './Main/SignUp'
 import { Reset } from './Main/Reset'
-import { Home } from './Core/Home';
+import  Home  from './Core/Home';
 import { Display } from './Core/Display';
-import { Kind } from './Core/Kind';
+import  Kind  from './Core/Kind';
 import  Prices  from './Core/Prices';
 import { FinalCart } from './Core/FinalCart';
-
+import  Goo  from './Core/Goo'
 
 
 
@@ -98,7 +98,13 @@ const GreenHome = createStackNavigator(
                 header: null
             }
         },
-
+        
+        Goo: {
+            screen: Goo,
+            navigationOptions: {
+                header: null
+            }
+        },
 
 
     

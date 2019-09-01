@@ -6,7 +6,12 @@ import { Search } from '../../Components/Search';
 import { Images } from '../../assets/Images';
 import Swiper from 'react-native-swiper';
 //import { Categories } from '../Categories';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Styles } from './Styles'
+import { countt } from '../../redux/actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 //import console = require('console');
 const Data = [
     {
@@ -49,20 +54,20 @@ class Goo extends Component {
         >
             <Text>{item.title}</Text>
 
-            
+
         </TouchableOpacity>
     );
 
     _renderItem2 = ({ item }) => (
         <TouchableOpacity style={{ width: 100, height: 100, borderRadius: 5, borderWidth: 1, borderColor: 'red', backgroundColor: 'green', marginVertical: 20 }}
-            //onPress={() => this.itemPressed(item.id)}
+        //onPress={() => this.itemPressed(item.id)}
         >
-            <Image source={Images.hand} style={{width: 100,height: 100,}}/>
-            
+            <Image source={Images.hand} style={{ width: 100, height: 100, }} />
+
         </TouchableOpacity>
     );
 
-    
+
     itemPressed = (id) => {
         const filterData = this.state.myData.filter(item => item.id !== id)
         this.setState({ myData: filterData })
@@ -80,8 +85,33 @@ class Goo extends Component {
                         <Search />
                     </TouchableOpacity>
                 </Shadow>
+                <View style={Styles.countContainerStyle}>
+                    <View style={Styles.boxStyle}>
+                        <Text style={Styles.countStyle}>{this.props.count}</Text>
+                    </View>
 
-                <View style={{ marginBottom: 20, alignItems: 'center',flex:1 }}>
+                    <View style={{ marginHorizontal: 10 }}>
+                        <TouchableOpacity
+                            onPress={() => { this.props.countt(this.props.count + 1) }}
+                        >
+                            <Icon
+                                name="chevron-up"
+                                size={15}
+                                color={'gray'} />
+
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            onPress={() => { if (this.props.count > 1) { this.props.countt(this.props.count - 1) } }}>
+                            <Icon
+                                name="chevron-down"
+                                size={15}
+                                color={'gray'} />
+                        </TouchableOpacity>
+
+                    </View>
+                </View>
+                <View style={{ marginBottom: 20, alignItems: 'center', flex: 1 }}>
 
                     <FlatList
                         data={this.state.myData}
@@ -112,4 +142,11 @@ const styles = StyleSheet.create({
 
 
 });
-export { Goo }
+const mapStateToProps = (state) => {
+    const { count } = state.coun
+    return { count }
+}
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ countt }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Goo)
