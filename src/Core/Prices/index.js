@@ -132,13 +132,13 @@ decOfMount=()=>{
 
                         <View >
                             <Card style={Styles.leftPartStyle}>
-                                <Text>{this.state.dataItem.name}</Text>
+                                <Text>{this.props.itemOfCart.item.name}</Text>
                             </Card>
                         </View>
 
                         <View style={Styles.rightPartStyle}>
                             <View>
-                                <Text style={Styles.priceTextStyle}>{this.state.dataItem.price} LE</Text>
+                                <Text style={Styles.priceTextStyle}>{this.props.itemOfCart.item.price} LE</Text>
                             </View>
 
                             <View style={Styles.countContainerStyle}>
@@ -230,7 +230,10 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps=(state)=>{
     const {qty}=state.qun;
-    return{qty};
+    const {itemOfCart } = state.kindd;
+    console.log('itemOfCart  ',itemOfCart)
+    return{qty,itemOfCart};
+    
 
 
 }

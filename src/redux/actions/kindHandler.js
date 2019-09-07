@@ -1,22 +1,29 @@
-import {KIND_HANDLER} from './types'
-import{getData} from '../../utils/fetchData'
-import axios from 'axios'
+import { KIND_HANDLER ,PRICE_ITEM} from "./types";
+import axios from "axios";
 
-var myData;
-export const kindHandler =(data)=>{
-   
-
-    //console.log("data =>>>>>>" , data)
-    axios.get(data.URL)
-    .then(res=>{console.log('resssssssss',res.data.data.Product_By_CatID);
-     myData=res.data.data.Product_By_CatID;
-    return myData}).then(()=>{
-        console.log("data =>>>>>>" , myData)
-    })
-    .catch((err) => alert("errrrrrror ",err)) 
-   
-    return{
-        type:KIND_HANDLER,
-        myData,
-    }
-}
+export const kindHandler = data => {
+  return dispatch => {
+    dispatch({
+      type: 'KIND_LOADING',
+      payload: false
+    });
+    axios
+      .get(data.URL)
+      .then(res => {
+        dispatch({
+          type: KIND_HANDLER,
+          payload: res.data.data.Product_By_CatID
+        });
+      })
+      .catch(err => alert("errrrrrror ", err));
+  };
+};
+export const priceItem = data => {
+  return dispatch => {
+    dispatch({
+      type: PRICE_ITEM,
+      payload: data
+    });
+  
+  };
+};

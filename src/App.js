@@ -10,7 +10,7 @@ import MyRootNavigator from "./RootNavigator"
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={store.store}>
         <View style={{ backgroundColor: '#fff', flex: 1 }}>
 
           <MyRootNavigator />
