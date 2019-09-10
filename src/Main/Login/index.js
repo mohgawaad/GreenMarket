@@ -36,7 +36,7 @@ class Login extends Component {
   };
 
   SkibFun = () => {
-    this._storeData();
+    //this._storeData();
     this.props.navigation.navigate("Home");
   };
 

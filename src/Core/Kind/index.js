@@ -17,10 +17,9 @@ import { LoadingKind } from "../../Components/LoadingKind";
 import { Images } from "../../assets/Images";
 import { SafeAreaView } from "react-navigation";
 import Swiper from "react-native-swiper";
-import axios from "axios";
 import { Styles } from "./Styles";
 
-import { kindHandler,priceItem } from "../../redux/actions";
+import { kindHandler, priceItem } from "../../redux/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -97,10 +96,9 @@ class Kind extends Component {
         style={Styles.shadowStyle}
         onPress={() => {
           this.props.priceItem({
-             item,
-           
-          })
-          this.props.navigation.navigate("Prices",{
+            item
+          });
+          this.props.navigation.navigate("Prices", {
             Item: item,
             MyTitle: this.state.title
           });
@@ -124,7 +122,7 @@ class Kind extends Component {
   render() {
     const data = this.props.dataOfKind;
 
-     const title = this.props.navigation.getParam('title')
+    const title = this.props.navigation.getParam("title");
     console.log("datadatadatadata ", this.props.dataOfKind);
 
     return (
@@ -215,11 +213,11 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   console.log("state ", state.kindd);
-  const { dataOfKind,loading,itemOfCart } = state.kindd;
-  return { dataOfKind,loading,itemOfCart };
+  const { dataOfKind, loading, itemOfCart } = state.kindd;
+  return { dataOfKind, loading, itemOfCart };
 };
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ kindHandler,priceItem }, dispatch);
+  return bindActionCreators({ kindHandler, priceItem }, dispatch);
 };
 export default connect(
   mapStateToProps,

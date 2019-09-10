@@ -1,40 +1,28 @@
-import { createStore, combineReducers, applyMiddleware} from 'redux';
-import ReduxThunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist'
-import {AsyncStorage} from 'react-native';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import ReduxThunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import { AsyncStorage } from "react-native";
 
-import Qtyred from "./reducers/qunReducer"
-import CouRed from './reducers/countReducer'
-import KindRed from './reducers/kindReducer'
+import Qtyred from "./reducers/qunReducer";
+import CouRed from "./reducers/countReducer";
+import KindRed from "./reducers/kindReducer";
+import cartRed from "./reducers/cartRed";
 const reducers = combineReducers({
-    qun: Qtyred,
-    coun:CouRed,
-    kindd:KindRed
-    
-})
+  qun: Qtyred,
+  coun: CouRed,
+  kindd: KindRed,
+  cartRed: cartRed
+});
 const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-   //blacklist :['kindd']
-  }
+  key: "root",
+  storage: AsyncStorage
+  //blacklist :['kindd']
+};
 
-  const persistedReducer = persistReducer(persistConfig, reducers);
-const store = createStore(persistedReducer , {} , applyMiddleware(ReduxThunk) );
-const  persistor = persistStore(store) ;
+const persistedReducer = persistReducer(persistConfig, reducers);
+const store = createStore(persistedReducer, {}, applyMiddleware(ReduxThunk));
+const persistor = persistStore(store);
 export default { store, persistor };
-
 
 //const store = createStore(reducers);
 //export default store;
-
-
-
-
-
-
-
-
-
- 
-
- 
