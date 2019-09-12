@@ -15,7 +15,7 @@ import Home from "./Core/Home";
 import { Display } from "./Core/Display";
 import Kind from "./Core/Kind";
 import Prices from "./Core/Prices";
-import { FinalCart } from "./Core/FinalCart";
+import FinalCart  from "./Core/FinalCart";
 import Goo from "./Core/Goo";
 
 const GreenHome = createStackNavigator({

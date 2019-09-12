@@ -20,7 +20,7 @@ import Swiper from "react-native-swiper";
 import axios from "axios";
 import { Styles } from "./Styles";
 
-import { kindHandler,priceItem } from "../../redux/actions";
+import { kindHandler,priceItem,addToCart ,addToTitle} from "../../redux/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -100,9 +100,11 @@ class Kind extends Component {
              item,
            
           })
+          this.props.addToTitle(this.props.navigation.getParam('title'))
           this.props.navigation.navigate("Prices",{
             Item: item,
-            MyTitle: this.state.title
+            MyTitle: this.props.navigation.getParam('title'),
+            
           });
         }}
         //onPress={()=> this.handleItemPressed(item.id)}
@@ -124,8 +126,10 @@ class Kind extends Component {
   render() {
     const data = this.props.dataOfKind;
 
-     const title = this.props.navigation.getParam('title')
-    console.log("datadatadatadata ", this.props.dataOfKind);
+      const title = this.props.navigation.getParam('title')/* */
+      //this.props.addToCart('title')
+     
+   // console.log("tiiiiiiiiitlllleee ", this.props.);
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -219,7 +223,7 @@ const mapStateToProps = state => {
   return { dataOfKind,loading,itemOfCart };
 };
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ kindHandler,priceItem }, dispatch);
+  return bindActionCreators({ kindHandler,priceItem,addToCart,addToTitle }, dispatch);
 };
 export default connect(
   mapStateToProps,

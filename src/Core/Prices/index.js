@@ -1,244 +1,233 @@
-import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { HeaderSub } from '../../Components/HeaderSub';
-import { Shadow } from '../../Components/Shadow';
-import { Card } from '../../Components/Card';
-import { Images } from '../../assets/Images';
-import { SafeAreaView } from 'react-navigation';
+import React, { Component } from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView
+} from "react-native";
+import { HeaderSub } from "../../Components/HeaderSub";
+import { Shadow } from "../../Components/Shadow";
+import { Card } from "../../Components/Card";
+import { Images } from "../../assets/Images";
+import { SafeAreaView } from "react-navigation";
 //import Swiper from 'react-native-swiper';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Button } from '../../Components/Button';
-import { Styles } from './Styles'
-import { deviceDimensions } from '../../utils/device-helper'
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { Button } from "../../Components/Button";
+import { Styles } from "./Styles";
+import { deviceDimensions } from "../../utils/device-helper";
 //import console = require('console');
 //import axios from 'axios'
 
-import { changeQty } from '../../redux/actions';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';  
+import { changeQty, addToCart } from "../../redux/actions";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-
-
-
-
-
-const { deviceWidth, deviceHeight } = deviceDimensions
-const TitleData = [{ title: 'test' }, { title: 'test' }, { title: 'test' }]
+const { deviceWidth, deviceHeight } = deviceDimensions;
+const TitleData = [{ title: "test" }, { title: "test" }, { title: "test" }];
 const SimilarData = [
-
-    {
-        title: 'Similar Items'
-    }, {
-        id: 1,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 2,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 3,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 4,
-        image: require('../../assets/Images/hand.png')
-    },
-    {
-        id: 5,
-        image: require('../../assets/Images/hand.png')
-    },
-
-
-]
+  {
+    title: "Similar Items"
+  },
+  {
+    id: 1,
+    image: require("../../assets/Images/hand.png")
+  },
+  {
+    id: 2,
+    image: require("../../assets/Images/hand.png")
+  },
+  {
+    id: 3,
+    image: require("../../assets/Images/hand.png")
+  },
+  {
+    id: 4,
+    image: require("../../assets/Images/hand.png")
+  },
+  {
+    id: 5,
+    image: require("../../assets/Images/hand.png")
+  }
+];
 const Brands = [
-    {
-        brand: "Gohina1"
-    },
-    {
-        brand: "Gohina2"
-    },
-    {
-        brand: "Gohina3"
-    },
-    {
-        brand: "Gohina4"
-    }
-    ,
-    {
-        brand: "Gohina4"
-    }
-]
+  {
+    brand: "Gohina1"
+  },
+  {
+    brand: "Gohina2"
+  },
+  {
+    brand: "Gohina3"
+  },
+  {
+    brand: "Gohina4"
+  },
+  {
+    brand: "Gohina4"
+  }
+];
 
 class Prices extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //quantity: 1,
+      dataItem: this.props.navigation.getParam("Item"),
+      dataTitle: this.props.navigation.getParam("MyTitle"),
+      arr:[],
+    };
+    console.log("dataTitle ", this.state.dataTitle);
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            //quantity: 1,
-            dataItem: this.props.navigation.getParam("Item"),
-            dataTitle: this.props.navigation.getParam("MyTitle"),
+  _keyExtractor = (item, index) => item.id;
 
-
-        }
-        console.log('dataItem ', this.state.dataItem)
+  _renderItem = ({ item }) => (
+    <Card style={Styles.cardStyle}>
+      <Text> {item.brand}</Text>
+    </Card>
+  );
+  _renderItem2 = ({ item }) => (
+    <View style={{ margin: 20 }}>
+      <TouchableOpacity
+        style={Styles.shadowStyle}
+        onPress={() => {
+          this.props.navigation.navigate("Kind");
+        }}
+      >
+        <Text style={{ fontSize: 18 }}> Product Name </Text>
+      </TouchableOpacity>
+    </View>
+  );
+  decOfMount = () => {
+    if (this.props.qty > 1) {
+      this.props.changeQty(this.props.qty - 1);
     }
+  };
 
+  render() {
+    const { dataTitle, dataItem ,arr} = this.state;
+    console.log("DATAITEM =>>>>>", this.props.itemOfCart.item);
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <HeaderSub
+          IconName1="bars"
+          IconName2="bell"
+          clicked={() => {
+            this.props.navigation.navigate("Kind");
+          }}
+        />
 
-    _keyExtractor = (item, index) => item.id;
+        <ScrollView style={{ marginBottom: 20 }}>
+          <Text style={Styles.textTitleStyle}>{this.props.myTitle}</Text>
+          <View style={Styles.PurchasesStyle}>
+            <View>
+              <Card style={Styles.leftPartStyle}>
+                <Text>{this.props.itemOfCart.item.name}</Text>
+              </Card>
+            </View>
 
-    _renderItem = ({ item }) => (
-        <Card style={Styles.cardStyle}>
-            <Text> {item.brand}</Text>
-        </Card>
-    )
-    _renderItem2 = ({ item }) => (
+            <View style={Styles.rightPartStyle}>
+              <View>
+                <Text style={Styles.priceTextStyle}>
+                  {this.props.itemOfCart.item.price} LE
+                </Text>
+              </View>
 
+              <View style={Styles.countContainerStyle}>
+                <View style={Styles.boxStyle}>
+                  <Text style={Styles.countStyle}>{this.props.qty}</Text>
+                </View>
 
-        <View style={{ margin: 20 }}>
+                <View style={{ marginHorizontal: 10 }}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.changeQty(this.props.qty + 1);
+                    }}
+                  >
+                    <Icon name="chevron-up" size={15} color={"gray"} />
+                  </TouchableOpacity>
 
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.decOfMount();
+                    }}
+                  >
+                    <Icon name="chevron-down" size={15} color={"gray"} />
+                  </TouchableOpacity>
+                </View>
+              </View>
 
-            <TouchableOpacity
-                style={Styles.shadowStyle}
-                onPress={() => { this.props.navigation.navigate('Kind') }}
+              <View style={{ flexDirection: "row" }}>
+                <View style={{ paddingTop: 20 }}>
+                  <Icon name="shopping-cart" size={25} color={"gray"} />
+                </View>
 
-            >
+                <Button
+                  style={Styles.buttonStyle}
+                  whenClicked={() => {
+                    arr.push([this.props.itemOfCart,this.props.myTitle])
+                    this.props.navigation.navigate("FinalCart",{DATA:arr});
+                    this.props.addToCart(arr);
+                  }}
+                  textStyle={Styles.loginText}
+                >
+                  ADD TO CART
+                </Button>
+              </View>
+            </View>
+          </View>
 
-                <Text
+          <View style={Styles.brandsContainerStyle}>
+            <Text style={Styles.brandsTextStyle}>Brands</Text>
+            <FlatList
+              data={Brands}
+              // extraData={this.state}
+              numColumns={2}
+              keyExtractor={this._keyExtractor}
+              renderItem={this._renderItem}
+            />
+          </View>
 
-                    style={{ fontSize: 18 }}> Product Name </Text>
-            </TouchableOpacity>
-        </View>
+          <View>
+            <View style={Styles.headerSimilarStyle}>
+              <Text style={{ fontSize: 18 }}> {SimilarData[0].title} </Text>
+              <Text onPress={() => this.props.navigation.navigate("Display")}>
+                see all
+              </Text>
+            </View>
 
-
+            <FlatList
+              data={SimilarData}
+              showsHorizontalScrollIndicator
+              horizontal
+              extraData={this.state}
+              keyExtractor={this._keyExtractor}
+              renderItem={this._renderItem2}
+              //ListHeaderComponent={<Text>{item.id}</Text>}
+              style={{ paddingTop: 0 }}
+              //onPress={() => this.props.navigation.navigate('Kind')}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
-decOfMount=()=>{
-    if(this.props.qty>1) {this.props.changeQty(this.props.qty-1)}
+  }
 }
-
-    render() {
-         return (
-
-            <SafeAreaView style={{ flex: 1, }}>
-                <HeaderSub
-                    IconName1='bars'
-                    IconName2='bell'
-                    clicked={() => { this.props.navigation.navigate("Kind") }} />
-
-                <ScrollView style={{ marginBottom: 20 }}>
-                    <Text style={Styles.textTitleStyle}>{this.state.dataTitle}</Text>
-                    <View style={Styles.PurchasesStyle}>
-
-
-                        <View >
-                            <Card style={Styles.leftPartStyle}>
-                                <Text>{this.props.itemOfCart.item.name}</Text>
-                            </Card>
-                        </View>
-
-                        <View style={Styles.rightPartStyle}>
-                            <View>
-                                <Text style={Styles.priceTextStyle}>{this.props.itemOfCart.item.price} LE</Text>
-                            </View>
-
-                            <View style={Styles.countContainerStyle}>
-                                <View style={Styles.boxStyle}>
-                                    <Text style={Styles.countStyle}>{this.props.qty}</Text>
-                                </View>
-
-                                <View style={{ marginHorizontal: 10 }}>
-                                    <TouchableOpacity
-                                        onPress={() => { this.props.changeQty(this.props.qty+1)}}
-                                    >
-                                        <Icon
-                                            name="chevron-up"
-                                            size={15}
-                                            color={'gray'} />
-
-                                    </TouchableOpacity>
-
-                                    <TouchableOpacity onPress={()=>{ this.decOfMount()}}>
-
-                                        <Icon
-                                            name="chevron-down"
-                                            size={15}
-                                            color={'gray'} />
-                                    </TouchableOpacity>
-
-                                </View>
-                            </View>
-
-                            <View style={{ flexDirection: 'row' }}>
-                                <View style={{ paddingTop: 20 }}>
-                                    <Icon
-                                        name="shopping-cart"
-                                        size={25}
-                                        color={'gray'} />
-                                </View>
-
-
-                                <Button
-                                    style={Styles.buttonStyle}
-                                    whenClicked={() => { this.props.navigation.navigate('FinalCart') }}
-                                    textStyle={Styles.loginText}>
-                                    ADD TO CART
-                            </Button>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={Styles.brandsContainerStyle}>
-                        <Text style={Styles.brandsTextStyle}>Brands</Text>
-                        <FlatList
-                            data={Brands}
-                            // extraData={this.state}
-                            numColumns={2}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
-                    </View>
-
-                    <View>
-                        <View style={Styles.headerSimilarStyle}>
-                            <Text style={{ fontSize: 18 }}> {SimilarData[0].title} </Text>
-                            <Text onPress={() => this.props.navigation.navigate('Display')}>see all</Text>
-                        </View>
-
-                        <FlatList
-                            data={SimilarData}
-                            showsHorizontalScrollIndicator
-                            horizontal
-                            extraData={this.state}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem2}
-                            //ListHeaderComponent={<Text>{item.id}</Text>}
-                            style={{ paddingTop: 0 }}
-                        //onPress={() => this.props.navigation.navigate('Kind')}
-                        />
-                    </View>
-
-
-                </ScrollView>
-
-            </SafeAreaView>
-
-        );
-    }
-}
-const styles = StyleSheet.create({
-
-});
-const mapStateToProps=(state)=>{
-    const {qty}=state.qun;
-    const {itemOfCart } = state.kindd;
-    console.log('itemOfCart  ',itemOfCart)
-    return{qty,itemOfCart};
-    
-
-
-}
-const mapDispatchToProps=(dispatch)=>{
-     return bindActionCreators({changeQty},dispatch)
-    
-}
-export default connect (mapStateToProps,mapDispatchToProps)(Prices) 
+const styles = StyleSheet.create({});
+const mapStateToProps = state => {
+  const { qty } = state.qun;
+  const { itemOfCart, myOrder,myTitle } = state.kindd;
+  console.log("myTitle  ", myTitle);
+  return { qty, itemOfCart, myOrder,myTitle };
+};
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ changeQty, addToCart }, dispatch);
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Prices);

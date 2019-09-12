@@ -1,4 +1,4 @@
-import { KIND_HANDLER ,PRICE_ITEM} from "./types";
+import { KIND_HANDLER ,PRICE_ITEM,ADD_TO_CART,ADD_TO_TITLE} from "./types";
 import axios from "axios";
 
 export const kindHandler = data => {
@@ -22,6 +22,25 @@ export const priceItem = data => {
   return dispatch => {
     dispatch({
       type: PRICE_ITEM,
+      payload: data
+    });
+  
+  };
+};
+
+export const addToCart = data => {
+  return dispatch => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: data
+    });
+  
+  };
+};
+export const addToTitle = data => {
+  return dispatch => {
+    dispatch({
+      type: ADD_TO_TITLE,
       payload: data
     });
   

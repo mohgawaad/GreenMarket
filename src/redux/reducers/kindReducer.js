@@ -1,8 +1,10 @@
-import { KIND_HANDLER, PRICE_ITEM } from "../actions/types";
+import { KIND_HANDLER, PRICE_ITEM, ADD_TO_CART,ADD_TO_TITLE } from "../actions/types";
 const INTIAL_STATE = {
   loading: false,
   dataOfKind: {},
-  itemOfCart:{},
+  itemOfCart: {},
+  myTitle:'',
+  myOrder: null
 };
 export default (state = INTIAL_STATE, action) => {
   console.log("arrarrarr", action);
@@ -20,6 +22,13 @@ export default (state = INTIAL_STATE, action) => {
     case PRICE_ITEM:
       return { ...state, itemOfCart: action.payload };
 
+    case ADD_TO_CART:
+      console.log("payload", action.payload);
+      /* return { ...state, myOrder: state.myOrder.concat(action.payload) }; */
+      return { ...state, myOrder: action.payload};
+      case ADD_TO_TITLE:
+      console.log("payload", action.payload);
+      return { ...state, myTitle: action.payload};
     default:
       return state;
   }
