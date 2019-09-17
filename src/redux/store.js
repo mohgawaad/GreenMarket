@@ -18,7 +18,7 @@ const persistConfig = {
    //blacklist :['kindd']
   }
 
-  const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, reducers);
 const store = createStore(persistedReducer , {} , applyMiddleware(ReduxThunk) );
 const  persistor = persistStore(store) ;
 export default { store, persistor };

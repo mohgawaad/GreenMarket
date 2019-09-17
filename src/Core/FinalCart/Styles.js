@@ -70,7 +70,8 @@ textCountStyle:{
 },
 closeCountainer:{ 
     marginRight: 10, 
-    justifyContent: 'center' 
+    justifyContent: 'center' ,
+    //backgroundColor:'red'
 },
 confirmationStyle:{ 
     alignItems: "center", 

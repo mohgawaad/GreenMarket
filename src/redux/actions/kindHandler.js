@@ -1,10 +1,10 @@
-import { KIND_HANDLER ,PRICE_ITEM,ADD_TO_CART,ADD_TO_TITLE} from "./types";
+import { KIND_HANDLER, PRICE_ITEM, ADD_TO_CART, ADD_TO_TITLE } from "./types";
 import axios from "axios";
 
 export const kindHandler = data => {
   return dispatch => {
     dispatch({
-      type: 'KIND_LOADING',
+      type: "KIND_LOADING",
       payload: false
     });
     axios
@@ -24,17 +24,16 @@ export const priceItem = data => {
       type: PRICE_ITEM,
       payload: data
     });
-  
   };
 };
 
 export const addToCart = data => {
+  console.log("dataaaaaa ", data);
   return dispatch => {
     dispatch({
       type: ADD_TO_CART,
       payload: data
     });
-  
   };
 };
 export const addToTitle = data => {
@@ -43,6 +42,5 @@ export const addToTitle = data => {
       type: ADD_TO_TITLE,
       payload: data
     });
-  
   };
 };

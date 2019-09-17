@@ -36,7 +36,7 @@ class Login extends Component {
   };
 
   SkibFun = () => {
-    this._storeData();
+    //this._storeData();
     this.props.navigation.navigate("Home");
   };
 
@@ -60,7 +60,7 @@ class Login extends Component {
       alert("nooooo");
     }
   };
- /*  _storeData = async res => {
+  /*  _storeData = async res => {
     console.log("res ", res);
     try {
       await AsyncStorage.setItem("@USER", res.data.access_token);

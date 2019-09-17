@@ -20,7 +20,12 @@ import Swiper from "react-native-swiper";
 import axios from "axios";
 import { Styles } from "./Styles";
 
-import { kindHandler,priceItem,addToCart ,addToTitle} from "../../redux/actions";
+import {
+  kindHandler,
+  priceItem,
+  addToCart,
+  addToTitle
+} from "../../redux/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -97,14 +102,13 @@ class Kind extends Component {
         style={Styles.shadowStyle}
         onPress={() => {
           this.props.priceItem({
-             item,
-           
-          })
-          this.props.addToTitle(this.props.navigation.getParam('title'))
-          this.props.navigation.navigate("Prices",{
+            item
+          });
+          this.props.addToTitle(this.props.navigation.getParam("title"));
+
+          this.props.navigation.navigate("Prices", {
             Item: item,
-            MyTitle: this.props.navigation.getParam('title'),
-            
+            MyTitle: this.props.navigation.getParam("title")
           });
         }}
         //onPress={()=> this.handleItemPressed(item.id)}
@@ -126,10 +130,10 @@ class Kind extends Component {
   render() {
     const data = this.props.dataOfKind;
 
-      const title = this.props.navigation.getParam('title')/* */
-      //this.props.addToCart('title')
-     
-   // console.log("tiiiiiiiiitlllleee ", this.props.);
+    const title = this.props.navigation.getParam("title"); /* */
+    //this.props.addToCart('title')
+
+    console.log("tiiiiiiiiitlllleee ", this.props.myOrder);
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -219,11 +223,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   console.log("state ", state.kindd);
-  const { dataOfKind,loading,itemOfCart } = state.kindd;
-  return { dataOfKind,loading,itemOfCart };
+  const { dataOfKind, loading, itemOfCart, myOrder } = state.kindd;
+  return { dataOfKind, loading, itemOfCart, myOrder };
 };
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ kindHandler,priceItem,addToCart,addToTitle }, dispatch);
+  return bindActionCreators(
+    { kindHandler, priceItem, addToCart, addToTitle },
+    dispatch
+  );
 };
 export default connect(
   mapStateToProps,

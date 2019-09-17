@@ -78,7 +78,8 @@ class Prices extends Component {
       //quantity: 1,
       dataItem: this.props.navigation.getParam("Item"),
       dataTitle: this.props.navigation.getParam("MyTitle"),
-      arr:[],
+      arr: [],
+      count: 1
     };
     console.log("dataTitle ", this.state.dataTitle);
   }
@@ -103,14 +104,22 @@ class Prices extends Component {
     </View>
   );
   decOfMount = () => {
-    if (this.props.qty > 1) {
-      this.props.changeQty(this.props.qty - 1);
+    if (this.state.count > 1) {
+      //this.props.changeQty
+      this.setState({ count: this.state.count - 1 });
     }
   };
+  componentWillReceiveProps(nextProps) {
+    console.log("nextPPrrops ==>", nextProps);
+    this.setState({ count: 1, arr: this.props.myOrder });
+  }
 
   render() {
-    const { dataTitle, dataItem ,arr} = this.state;
+    const { dataTitle, dataItem, arr } = this.state;
+
     console.log("DATAITEM =>>>>>", this.props.itemOfCart.item);
+    console.log("DATAITEM Order =>>>>>", this.props.myOrder);
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderSub
@@ -133,19 +142,20 @@ class Prices extends Component {
             <View style={Styles.rightPartStyle}>
               <View>
                 <Text style={Styles.priceTextStyle}>
-                  {this.props.itemOfCart.item.price} LE
+                  {this.props.itemOfCart.item.price * this.state.count} LE
                 </Text>
               </View>
 
               <View style={Styles.countContainerStyle}>
                 <View style={Styles.boxStyle}>
-                  <Text style={Styles.countStyle}>{this.props.qty}</Text>
+                  <Text style={Styles.countStyle}>{this.state.count}</Text>
                 </View>
 
                 <View style={{ marginHorizontal: 10 }}>
                   <TouchableOpacity
                     onPress={() => {
-                      this.props.changeQty(this.props.qty + 1);
+                      //this.props.changeQty
+                      this.setState({ count: this.state.count + 1 });
                     }}
                   >
                     <Icon name="chevron-up" size={15} color={"gray"} />
@@ -169,8 +179,12 @@ class Prices extends Component {
                 <Button
                   style={Styles.buttonStyle}
                   whenClicked={() => {
-                    arr.push([this.props.itemOfCart,this.props.myTitle])
-                    this.props.navigation.navigate("FinalCart",{DATA:arr});
+                    arr.push([
+                      this.props.itemOfCart,
+                      this.props.myTitle,
+                      this.state.count
+                    ]);
+                    this.props.navigation.navigate("FinalCart", { DATA: arr });
                     this.props.addToCart(arr);
                   }}
                   textStyle={Styles.loginText}
@@ -220,9 +234,9 @@ class Prices extends Component {
 const styles = StyleSheet.create({});
 const mapStateToProps = state => {
   const { qty } = state.qun;
-  const { itemOfCart, myOrder,myTitle } = state.kindd;
+  const { itemOfCart, myOrder, myTitle } = state.kindd;
   console.log("myTitle  ", myTitle);
-  return { qty, itemOfCart, myOrder,myTitle };
+  return { qty, itemOfCart, myOrder, myTitle };
 };
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ changeQty, addToCart }, dispatch);

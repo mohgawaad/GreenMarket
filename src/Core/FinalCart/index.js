@@ -20,6 +20,10 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Button } from "../../Components/Button";
 import { Styles } from "./Styles";
 import { deviceDimensions } from "../../utils/device-helper";
+
+import { addToCart } from "../../redux/actions";
+import { bindActionCreators } from "redux";
+
 const { deviceWidth, deviceHeight } = deviceDimensions;
 //import {   } from "../../redux/actions";
 import { connect } from "react-redux";
@@ -29,6 +33,9 @@ const TitleData = [{ title: "test" }, { title: "test" }, { title: "test" }];
 class FinalCart extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      testCount: ""
+    };
     //this.props.navigation.navigate('Intro')
   }
 
@@ -47,16 +54,18 @@ class FinalCart extends Component {
         </View>
         <View style={Styles.productDetailsStyle}>
           <View>
-            <Text style={{ fontSize: 30 }}>{item[0].item.price} LE</Text>
+            <Text style={{ fontSize: 30 }}>
+              {item[0].item.price * item[2]} LE
+            </Text>
           </View>
           <View style={Styles.countCountainerStyle}>
             <View style={Styles.boxCountStyle}>
-              <Text style={Styles.textCountStyle}>{this.props.qty}</Text>
+              <Text style={Styles.textCountStyle}>{item[2]}</Text>
             </View>
             <View style={{ marginHorizontal: 10 }}>
               <TouchableOpacity
                 onPress={() => {
-                  alert("up");
+                  this.upFun(item[0].item.id);
                 }}
               >
                 <Icon name="chevron-up" size={15} color={"gray"} />
@@ -64,7 +73,7 @@ class FinalCart extends Component {
 
               <TouchableOpacity
                 onPress={() => {
-                  alert("down");
+                  this.downFun(item[0].item.id);
                 }}
               >
                 <Icon name="chevron-down" size={15} color={"gray"} />
@@ -72,10 +81,58 @@ class FinalCart extends Component {
             </View>
           </View>
         </View>
+        <View style={Styles.closeCountainer}>
+          <TouchableHighlight
+            onPress={() => {
+              this.closeFun(item[0].item.id);
+            }}
+          >
+            <Icon name="window-close" size={25} color={"gray"} />
+          </TouchableHighlight>
+        </View>
       </View>
     );
   };
 
+  upFun = id => {
+    let data = this.props.myOrder;
+
+    /* */
+
+    data = data.filter(item => {
+      if (item[0].item.id == id) {
+        return item[2]++;
+      } else return true;
+    });
+
+    this.props.addToCart(data);
+  };
+
+  downFun = id => {
+    let data = this.props.myOrder;
+
+    /* */
+
+    data = data.filter(item => {
+      if (item[0].item.id == id) {
+        return item[2] > 1 ? item[2]-- : item[2];
+      } else return true;
+    });
+
+    this.props.addToCart(data);
+  };
+  closeFun = id => {
+    let data = this.props.myOrder;
+
+    /* */
+
+    data = data.filter(item => {
+      return item[0].item.id !== id;
+    });
+
+    this.props.addToCart(data);
+    // console.log("datadata>>>>>>data", this.props.myOrder);
+  };
   render() {
     console.log("this.props.myOrder >>", this.props.myOrder);
     //console.log('DATA >>',this.props.navigation.getParam('DATA'))
@@ -135,11 +192,10 @@ const mapStateToProps = state => {
   console.log("qty  ", qty);
   return { myOrder, qty };
 };
-//   const mapDispatchToProps = dispatch => {
-//     return bindActionCreators({ changeQty, addToCart }, dispatch);
-//   };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ addToCart }, dispatch);
+};
 export default connect(
   mapStateToProps,
-  //mapDispatchToProps
-  null
+  mapDispatchToProps
 )(FinalCart);
